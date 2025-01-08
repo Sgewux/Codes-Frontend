@@ -1,16 +1,27 @@
 import { useState } from "react";
 
 function ActivityGraph(){
-    const [activity, setActivity] = useState<Array<{date:string, num: number}>>([{"date":"2024-01-21", "num":1},{"date":"2025-01-01", "num":15},{"date":"2025-01-07", "num":1}]);
+    const [activity, setActivity] = useState<Array<{date:string, num: number}>>([{"date":"2025-01-02", "num":1},{"date":"2025-01-06", "num":1}, {"date":"2025-01-08", "num":10}]);
 
+    const getColorByFreq = (freq: number) => {
+        if(freq > 8){
+            return "#216E39"
+        } else if(freq > 5){
+            return "#30A14E";
+        } else if(freq > 2){
+            return "#40C463";
+        } else {
+            return "#8bdc99";
+        }
+    };
 
     const generateSquares = () => {
         const today = new Date(Date.now());
+        //const today = new Date(Date.parse("2025-01-12T00:00:00"));
         const numDays = 52*7 + (today.getDay());
-        let currDate = new Date();
+        let currDate = new Date(today.getTime());
         currDate.setDate(today.getDate() - numDays);
         let k = 0;
-
         const eq = (a:Date, b:Date) => {
             return (a.getFullYear() == b.getFullYear() ) && (a.getMonth() == b.getMonth()) && (a.getDate() == b.getDate());
         }
@@ -21,18 +32,7 @@ function ActivityGraph(){
             let col = [];
             for(let j = 0; j<7; j++){
                 if(activity[k] !== undefined && eq(currDate, new Date(Date.parse(activity[k].date + "T00:00:00")))){
-                    let color:string;
-                    if(activity[k].num > 8){
-                        color = "#216E39"
-                    } else if(activity[k].num > 5){
-                        color = "#30A14E";
-                    } else if(activity[k].num > 2){
-                        color = "#40C463";
-                    } else {
-                        color="#8bdc99";
-                    }
-
-                    col.push(<rect  width={11} height={11} y={13*j} fill={color}/>);
+                    col.push(<rect  width={11} height={11} y={13*j} fill={getColorByFreq(activity[k].num)}/>);
                     k++;
                 } else {
                     col.push(<rect  width={11} height={11} y={13*j} fill="rgba(235, 237, 240, 1)"/>);
@@ -51,18 +51,7 @@ function ActivityGraph(){
         let col = [];
         for(let j = 0; j<=today.getDay(); j++){
                 if(activity[k] !== undefined && eq(currDate, new Date(Date.parse(activity[k].date + "T00:00:00")))){
-                    let color:string;
-                    if(activity[k].num > 8){
-                        color = "#216E39"
-                    } else if(activity[k].num > 5){
-                        color = "#30A14E";
-                    } else if(activity[k].num > 2){
-                        color = "#40C463";
-                    } else {
-                        color="#8bdc99";
-                    }
-
-                    col.push(<rect  width={11} height={11} y={13*j} fill={color}/>);
+                    col.push(<rect  width={11} height={11} y={13*j} fill={getColorByFreq(activity[k].num)}/>);
                     k++;
                 } else {
                     col.push(<rect  width={11} height={11} y={13*j} fill="rgba(235, 237, 240, 1)"/>);
@@ -83,6 +72,7 @@ function ActivityGraph(){
         let buffer = [];
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let currMonth = new Date().getMonth();
+        //let currMonth = new Date(Date.parse("2025-05-21T00:00:00")).getMonth();
 
         for(let i = 0; i < 13; i++){
             buffer.push(<text x ={i*55} y={-5} className="text-[#000000] text-[10px]" >{months[currMonth]}</text>);
