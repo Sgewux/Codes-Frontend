@@ -30,7 +30,7 @@ function Nav({ logged, activeTab, role }: NavProps) {
                     { (role == "admin" || role == "problemsetter") ? 
                             (<div className={`h-[80px] ${activeTab == "problemsetter" ? "border-solid border-[#4E80C4] border-b-[6px]" : ""}`}>
                                 <span className={`text-[18px] cursor-pointer ${activeTab == "problemsetter" ? "text-[#4E80C4] font-[500]" : "font-[300]"}`}>
-                                    problemsetter
+                                    Problemsetter
                                 </span>
                             </div>) : <></>
                     }
