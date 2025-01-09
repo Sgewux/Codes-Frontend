@@ -54,7 +54,7 @@ function Submit() {
           </h3>
           <div className="w-[1000px] h-[265px] bg-[#B8B8B8] rounded-[15px] flex justify-center items-center">
             <textarea
-              className="h-[245px] w-[980px] p-[10px] rounded-[15px]"
+              className="h-[245px] w-[980px] p-[10px] rounded-[15px] resize-none"
               onChange={(e) => setPastedCode(e.target.value)}
             />
           </div>

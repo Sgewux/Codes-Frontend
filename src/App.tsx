@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Submit from "./pages/Submit";
 import Problems from "./pages/Problems";
+import Submissions from "./pages/Submissions";
+import SubmissionDetail from "./pages/SubmissionDetail";
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/users/:handle" element={<Profile/>}/>
+          <Route path="/users/:handle/submissions" element={<Submissions/>}/>
+          <Route path="/submissions/:id" element={<SubmissionDetail/>}/>
           <Route path="/submit" element={<Submit/>}/>
           <Route path="/problems" element={<Problems/>}/>
         </Routes>

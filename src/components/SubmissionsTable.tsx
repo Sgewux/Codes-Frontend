@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface SubmissionsTableProps {
   submissions: Array<{
     id: number;
@@ -52,7 +54,7 @@ function SubmissionsTable() {
             <span>Problem Name</span>
           </th>
           <th className="text-[#4E80C4] text-[18px] w-[200px] h-[50px]">
-            <span>Status</span>
+            <span>Veredict</span>
           </th>
           <th className="text-[#4E80C4] text-[18px] w-[200px] h-[50px]">
             <span>Date</span>
@@ -62,7 +64,9 @@ function SubmissionsTable() {
           return (
             <tr className={`${s.status == "AC" ? "bg-[#8cdfb7]" : ""}`}>
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (submissions.length - 1) ? "rounded-bl-[15px]" : ""}`}>
-                <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer">{s.id}</span>
+                <Link to={`/submissions/${s.id}`} target="_blank">
+                  <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer">{s.id}</span>
+                </Link>
               </th>
               <th className=" font-[400] text-[15px] w-[200px] h-[50px]">
                 {s.problem_name}
