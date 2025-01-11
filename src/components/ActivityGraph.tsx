@@ -1,7 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import SubmissionActivity from "../types/SubmissionActivity";
+import { getSubmissionActivity } from "../api/contestants";
+import { useParams } from "react-router-dom";
 
 function ActivityGraph(){
-    const [activity, setActivity] = useState<Array<{date:string, num: number}>>([{"date":"2025-01-02", "num":1},{"date":"2025-01-06", "num":1}, {"date":"2025-01-08", "num":10}]);
+    const [activity, setActivity] = useState<Array<SubmissionActivity>>();
+    const { handle } = useParams();
+
+    const today = new Date(Date.now());
+    //const today = new Date(Date.parse("2025-01-12T00:00:00"));
+    const numDays = 52*7 + (today.getDay());
+    let currDate = new Date(today.getTime());
+    currDate.setDate(today.getDate() - numDays);
+
+    const format = (d: Date) => {
+        const month = (d.getMonth() + 1) >= 10 ? `${(d.getMonth() + 1)}` : `0${d.getMonth() + 1}`;
+        const day = (d.getDate() + 1) >= 10 ? `${(d.getDate())}` : `0${d.getDate()}`;
+    
+        return `${d.getFullYear()}-${month}-${day}`;
+    };
+
+    useEffect(() => {
+        const getActivity = async () => {
+            if(handle){
+                const res = await getSubmissionActivity(handle, format(currDate), format(today));
+                setActivity(res.data);
+            }
+        }
+
+        getActivity();
+    }, []);
 
     const getColorByFreq = (freq: number) => {
         if(freq > 8){
@@ -16,11 +44,6 @@ function ActivityGraph(){
     };
 
     const generateSquares = () => {
-        const today = new Date(Date.now());
-        //const today = new Date(Date.parse("2025-01-12T00:00:00"));
-        const numDays = 52*7 + (today.getDay());
-        let currDate = new Date(today.getTime());
-        currDate.setDate(today.getDate() - numDays);
         let k = 0;
         const eq = (a:Date, b:Date) => {
             return (a.getFullYear() == b.getFullYear() ) && (a.getMonth() == b.getMonth()) && (a.getDate() == b.getDate());
@@ -31,8 +54,8 @@ function ActivityGraph(){
 
             let col = [];
             for(let j = 0; j<7; j++){
-                if(activity[k] !== undefined && eq(currDate, new Date(Date.parse(activity[k].date + "T00:00:00")))){
-                    col.push(<rect  width={11} height={11} y={13*j} fill={getColorByFreq(activity[k].num)}/>);
+                if(activity && activity[k] !== undefined && eq(currDate, new Date(Date.parse(activity[k].date + "T00:00:00")))){
+                    col.push(<rect  width={11} height={11} y={13*j} fill={getColorByFreq(activity[k].numberOfSubmissions)}/>);
                     k++;
                 } else {
                     col.push(<rect  width={11} height={11} y={13*j} fill="rgba(235, 237, 240, 1)"/>);
@@ -50,8 +73,8 @@ function ActivityGraph(){
 
         let col = [];
         for(let j = 0; j<=today.getDay(); j++){
-                if(activity[k] !== undefined && eq(currDate, new Date(Date.parse(activity[k].date + "T00:00:00")))){
-                    col.push(<rect  width={11} height={11} y={13*j} fill={getColorByFreq(activity[k].num)}/>);
+                if( activity && activity[k] !== undefined && eq(currDate, new Date(Date.parse(activity[k].date + "T00:00:00")))){
+                    col.push(<rect  width={11} height={11} y={13*j} fill={getColorByFreq(activity[k].numberOfSubmissions)}/>);
                     k++;
                 } else {
                     col.push(<rect  width={11} height={11} y={13*j} fill="rgba(235, 237, 240, 1)"/>);
@@ -86,17 +109,25 @@ function ActivityGraph(){
         return buffer;
 
     }
-    return (
-        <div>
-            <svg viewBox="-22 -20 721 200" width={1000} >
-                <g>
-                    {generateSquares()}
-                    {generateLabels()}
-                </g>
-            </svg>
-        </div>
 
-    );
+    if(activity){
+
+        return (
+            <div>
+                <svg viewBox="-22 -20 721 200" width={1000} >
+                    <g>
+                        {generateSquares()}
+                        {generateLabels()}
+                    </g>
+                </svg>
+            </div>
+    
+        );
+    } else {
+        return <p>Loading...</p>
+    }
+
+
 }
 
 export default ActivityGraph;

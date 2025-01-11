@@ -33,6 +33,9 @@ function ProblemsTable({ problems }:ProblemsTableProps ){
         <th className="text-[#4E80C4] text-[18px] w-[200px] h-[50px]">
           <span>Author</span>
         </th>
+        <th className="text-[#4E80C4] text-[18px] w-[200px] h-[50px]">
+          <span>Solved by</span>
+        </th>
       </tr>
       {problems.map((p, i) => {
           return (
@@ -46,8 +49,11 @@ function ProblemsTable({ problems }:ProblemsTableProps ){
               <th className="font-[400] text-[15px] w-[200px] h-[50px] ">
                 {statusMessage(p.status)}
               </th>
-              <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (problems.length - 1) ? "rounded-br-[15px]" : ""}`}>
+              <th className={`font-[400] text-[15px] w-[200px] h-[50px] `}>
                 {p.author}
+              </th>
+              <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (problems.length - 1) ? "rounded-br-[15px]" : ""}`}>
+                  x100
               </th>
             </tr>
           );
