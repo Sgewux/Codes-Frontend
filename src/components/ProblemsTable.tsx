@@ -1,9 +1,11 @@
+import ProblemRow from "../types/ProblemRow";
+
 interface ProblemsTableProps {
-  problems: Array<{id: number, problemName: string, status: "AC" | "TL" | "WA" | "CE" | "RT" | undefined, author: string}>;
+  problems: Array<ProblemRow>;
 };
 
 function ProblemsTable({ problems }:ProblemsTableProps ){
-  const statusMessage = (s: string | undefined) => {
+  const statusMessage = (s: string ) => {
     if (s == "AC") {
       return "Accepted";
     } else if (s == "WA") {
@@ -44,7 +46,7 @@ function ProblemsTable({ problems }:ProblemsTableProps ){
                 <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer">{p.id}</span>
               </th>
               <th className=" font-[400] text-[15px] w-[200px] h-[50px]">
-                {p.problemName}
+                {p.name}
               </th>
               <th className="font-[400] text-[15px] w-[200px] h-[50px] ">
                 {statusMessage(p.status)}
@@ -53,7 +55,7 @@ function ProblemsTable({ problems }:ProblemsTableProps ){
                 {p.author}
               </th>
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (problems.length - 1) ? "rounded-br-[15px]" : ""}`}>
-                  x100
+                  {p.times_solved}
               </th>
             </tr>
           );
