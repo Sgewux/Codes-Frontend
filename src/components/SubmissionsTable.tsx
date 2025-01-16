@@ -62,10 +62,10 @@ function SubmissionsTable() {
         </tr>
         {submissions.map((s, i) => {
           return (
-            <tr className={`${s.status == "AC" ? "bg-[#8cdfb7]" : ""}`}>
+            <tr className={`${s.status == "AC" ? "bg-[#19BF6E] text-white" : ""}`}>
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (submissions.length - 1) ? "rounded-bl-[15px]" : ""}`}>
                 <Link to={`/submissions/${s.id}`} target="_blank">
-                  <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer">{s.id}</span>
+                  <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{s.id}</span>
                 </Link>
               </th>
               <th className=" font-[400] text-[15px] w-[200px] h-[50px]">

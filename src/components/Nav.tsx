@@ -11,7 +11,7 @@ function Nav({ logged, activeTab, role }: NavProps) {
         <div className="h-[80px] w-[100vw] sticky bg-white shadow-[0_2px_4px_#00000040] top-0">
             <div className="flex flex-row">
                 <div className="text-center h-[80px] w-[12vw] align-middle leading-[80px]">
-                    <span className="text-[30px] font-[500]">Codes</span>
+                    <span className="text-[30px] font-[500]"><span className="text-main">C</span>od<span className="text-main">es</span></span>
                 </div>
 
                 <div className="h-[80px] w-[76vw] flex flex-row justify-around align-middle leading-[80px] text-center">

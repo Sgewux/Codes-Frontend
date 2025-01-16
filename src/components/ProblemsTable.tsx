@@ -41,9 +41,9 @@ function ProblemsTable({ problems }:ProblemsTableProps ){
       </tr>
       {problems.map((p, i) => {
           return (
-            <tr className={`${p.status == "AC" ? "bg-[#8cdfb7]" : ""}`}>
+            <tr className={`${p.status == "AC" ? "bg-[#19BF6E] text-white" : ""}`}>
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (problems.length - 1) ? "rounded-bl-[15px]" : ""}`}>
-                <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer">{p.id}</span>
+                <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.id}</span>
               </th>
               <th className=" font-[400] text-[15px] w-[200px] h-[50px]">
                 {p.name}

@@ -1,4 +1,5 @@
 import ActivityGraph from "../components/ActivityGraph";
+import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import SubmissionsTable from "../components/SubmissionsTable";
 import UserStats from "../components/UserStats";
@@ -34,6 +35,8 @@ function Profile() {
           <ActivityGraph />
         </div>
       </div>
+
+      <Footer/>
     </>
   );
 }

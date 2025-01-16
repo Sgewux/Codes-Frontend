@@ -4,6 +4,7 @@ import ProblemsTable from "../components/ProblemsTable";
 import ProblemRow from "../types/ProblemRow";
 import { getProblems, getProblemsByName } from "../api/problems";
 import PageSelector from "../components/PageSelector";
+import Footer from "../components/Footer";
 
 function Problems(){
   const [filter, setFilter] = useState<"all" | "accepted" | "tried" >("all"); //according to this fetch data with useEffect
@@ -46,6 +47,7 @@ function Problems(){
 
   if(problems){
     return(
+      <>
       <div className="w-[100vw] h-[100vh] bg-[#D9D9D9]">
         <Nav activeTab={"problems"} logged={false} role="guest"/>
         {/* <div className="h-[100px] w-[100cw] bg-white text-left align-middle leading-[50px] px-[50px]">
@@ -76,8 +78,9 @@ function Problems(){
             <PageSelector numOfPages={numOfPages} currentPage={page} setPage={setPage}/>
           </div>
         </div>
-        
       </div>
+      <Footer/>
+      </>
     );
   } else {
     return <p>Loading...</p>
