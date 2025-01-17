@@ -38,7 +38,7 @@ function PageSelector({ numOfPages, currentPage, setPage }: pageSelectorProps) {
         />   
         <span>of {numOfPages}</span>
       </div>
-      <button className="bg-white h-[30px] w-[30px] rounded-r-[10px] disabled:cursor-not-allowed " onClick={() => handleChangePage(1)} disabled={currentPage == numOfPages}>
+      <button className="bg-white h-[30px] w-[30px] rounded-r-[10px] disabled:cursor-not-allowed " onClick={() => handleChangePage(1)} disabled={currentPage >= numOfPages}>
         {">"}
       </button>
     </div>

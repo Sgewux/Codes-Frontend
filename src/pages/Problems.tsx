@@ -5,6 +5,7 @@ import ProblemRow from "../types/ProblemRow";
 import { getProblems, getProblemsByName } from "../api/problems";
 import PageSelector from "../components/PageSelector";
 import Footer from "../components/Footer";
+import SecondLevelMenu from "../components/SecondLevelMenu";
 
 function Problems(){
   const [filter, setFilter] = useState<"all" | "accepted" | "tried" >("all"); //according to this fetch data with useEffect
@@ -12,7 +13,7 @@ function Problems(){
   const [page, setPage] = useState<number>(1);
   const [numOfPages, setNumOfPages] = useState<number>(0);
   const [search, setSearch] = useState<string|null>(null);
-  const pageLenght = 5;
+  const pageLenght = 10;
 
   const changeFilter = (o: "all" | "accepted" | "tried") => {
     setFilter(o);
@@ -48,22 +49,15 @@ function Problems(){
   if(problems){
     return(
       <>
-      <div className="w-[100vw] h-[100vh] bg-[#D9D9D9]">
+      <div className="">
         <Nav activeTab={"problems"} logged={false} role="guest"/>
         {/* <div className="h-[100px] w-[100cw] bg-white text-left align-middle leading-[50px] px-[50px]">
           <h1 className="font-[500] text-[30px]">Problems</h1>
         </div> */}
         <div className="h-[80px] w-[100vw] bg-white">
-            <div className="flex flex-row justify-around w-[60vw] align-middle leading-[80px] text-center float-left h-[80px]">
-                <div className={`h-[80px] ${filter == "all" ? "border-solid border-[#4E80C4] border-b-[3px]" : ""}`}>
-                    <span className={`text-[18px] cursor-pointer ${filter=="all" ? "text-[#4E80C4] font-[500]" : "font-[300]"} transition-[0.3s] hover:text-[#235598]`} onClick={() => changeFilter("all")}>All problems</span>
-                </div>
-                <div className={`h-[80px] ${filter == "accepted" ? "border-solid border-[#4E80C4] border-b-[3px]" : ""}`}>
-                    <span className={`text-[18px] cursor-pointer ${filter=="accepted" ? "text-[#4E80C4] font-[500]" : "font-[300]"} transition-[0.3s] hover:text-[#235598]`} onClick={() => changeFilter("accepted")}>Accepted</span>
-                </div>
-                <div className={`h-[80px] ${filter == "tried" ? "border-solid border-[#4E80C4] border-b-[3px]" : ""}`}>
-                    <span className={`text-[18px] cursor-pointer ${filter=="tried" ? "text-[#4E80C4] font-[500]" : "font-[300]"} transition-[0.3s] hover:text-[#235598]`}onClick={() => changeFilter("tried")}>Tried</span>
-                </div>
+
+            <div className="w-[60vw]">
+              <SecondLevelMenu options={["all", "accepted", "tried"]} labels={["All", "Accepted", "Tried"]} selected={filter} select={changeFilter}/>
             </div>
   
             <div className="w-[40vw] h-[80px] float-right flex justify-center items-center" >
@@ -72,13 +66,15 @@ function Problems(){
             </div>
         </div>
   
-        <div className="flex flex-col justify-center items-center mt-[30px] bg-[#D9D9D9]" >
+      </div>
+      
+      <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-160px)]" >
           <ProblemsTable problems={problems}/>
           <div className="mt-[30px]">
             <PageSelector numOfPages={numOfPages} currentPage={page} setPage={setPage}/>
           </div>
-        </div>
       </div>
+
       <Footer/>
       </>
     );
