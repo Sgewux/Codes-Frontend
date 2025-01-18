@@ -8,6 +8,7 @@ import Problems from "./pages/Problems";
 import Submissions from "./pages/Submissions";
 import SubmissionDetail from "./pages/SubmissionDetail";
 import Friends from "./pages/Friends";
+import Problemsetter from "./pages/Problemsetter";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/submissions/:id" element={<SubmissionDetail/>}/>
           <Route path="/submit" element={<Submit/>}/>
           <Route path="/problems" element={<Problems/>}/>
+          <Route path="/problemsetter" element={<Problemsetter/>}/>
         </Routes>
       </BrowserRouter>
     </>

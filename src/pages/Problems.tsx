@@ -49,26 +49,25 @@ function Problems(){
   if(problems){
     return(
       <>
-      <div className="">
-        <Nav activeTab={"problems"} logged={false} role="guest"/>
-        {/* <div className="h-[100px] w-[100cw] bg-white text-left align-middle leading-[50px] px-[50px]">
-          <h1 className="font-[500] text-[30px]">Problems</h1>
-        </div> */}
-        <div className="h-[80px] w-[100vw] bg-white">
 
-            <div className="w-[60vw]">
-              <SecondLevelMenu options={["all", "accepted", "tried"]} labels={["All", "Accepted", "Tried"]} selected={filter} select={changeFilter}/>
-            </div>
-  
-            <div className="w-[40vw] h-[80px] float-right flex justify-center items-center" >
-                <input id="search-bar" type="search" className="border-solid border-[#B8B8B8] border-[3px] rounded-[10px] w-[200px] h-[35px] p-[3px] placeholder:text-center" 
-                placeholder="Search..." onChange={e => handleSearchBar(e)}/>
-            </div>
-        </div>
-  
+      <Nav activeTab={"problems"} logged={false} role="guest"/>
+      <div className="h-[100px] w-[100vw] bg-white text-center align-middle pt-[10px]">
+        <h1 className="font-[500] text-[30px] leading-[100px]">Problemset</h1>
       </div>
+      <div className="h-[80px] w-[100vw] bg-white">
+
+          <div className="w-[60vw]">
+            <SecondLevelMenu options={["all", "accepted", "tried"]} labels={["All", "Accepted", "Tried"]} selected={filter} select={changeFilter}/>
+          </div>
+
+          <div className="w-[40vw] h-[80px] float-right flex justify-center items-center" >
+              <input id="search-bar" type="search" className="border-solid border-[#B8B8B8] border-[3px] rounded-[10px] w-[200px] h-[35px] p-[3px] placeholder:text-center" 
+              placeholder="Search..." onChange={e => handleSearchBar(e)}/>
+          </div>
+      </div>
+
       
-      <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-160px)]" >
+      <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-260px)]" >
           <ProblemsTable problems={problems}/>
           <div className="mt-[30px]">
             <PageSelector numOfPages={numOfPages} currentPage={page} setPage={setPage}/>

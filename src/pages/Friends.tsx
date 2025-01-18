@@ -2,15 +2,25 @@ import { useState } from "react";
 import Nav from "../components/Nav";
 import SecondLevelMenu from "../components/SecondLevelMenu";
 import Footer from "../components/Footer";
+import UserInfoRow from "../types/UserInfoRow";
 
 function Friends() {
   const [filter, setFilter] = useState<"all" | "friends">("all");
-  const users: Array<{handle: string, lastSubmission: number, numSubmissions: number, acSubmissions: number}> = [
-    {handle: "hollycow", lastSubmission: 3, numSubmissions:100, acSubmissions: 12}, 
-    {handle: "asdasd", lastSubmission: 3, numSubmissions:100, acSubmissions: 12},
-    {handle: "asdsadow", lastSubmission: 1, numSubmissions:100, acSubmissions: 12},
-    {handle: "dfsddfow", lastSubmission: 2, numSubmissions:100, acSubmissions: 12}
-  ]
+  
+  const handleAddFriend = (handle: string)  => {
+    console.log("add", handle);
+  };
+
+  const handleRemoveFriend = (handle: string)  => {
+    console.log("rm", handle);
+  };
+
+  const users: Array<UserInfoRow> = [
+    {handle: "hollycow",  lastSubmissionDaysAgo: 3, numSubmissions:100, acSubmissions: 12, isFriend: false}, 
+    {handle: "asdasd",  lastSubmissionDaysAgo: 3, numSubmissions:100, acSubmissions: 12 , isFriend: false},
+    {handle: "asdsadow",  lastSubmissionDaysAgo: 1, numSubmissions:100, acSubmissions: 12, isFriend: true },
+    {handle: "dfsddfow",  lastSubmissionDaysAgo: 2, numSubmissions:100, acSubmissions: 12, isFriend: false}
+  ];
 
   return (
     <>
@@ -29,7 +39,7 @@ function Friends() {
         </div>
       </div>
 
-      <div className="w-[100vw] bg-[#D9D9D9] min-h-[calc(100vh - 260px)] py-[30px]">
+      <div className="w-[100vw] bg-[#D9D9D9] min-h-[calc(100vh-260px)] py-[30px]">
         <div className="flex flex-col justify-around gap-[20px] items-center">
           {users.map(u => {
             return(
@@ -40,10 +50,12 @@ function Friends() {
               </div>
               <div className="text-[#464646]">
                 <h3 className="font-[700] text-[15px]">Last Submission</h3>
-                <p>{u.lastSubmission} days ago</p>
+                <p>{u. lastSubmissionDaysAgo} days ago</p>
               </div>
-              <button className="bg-main w-[85px] h-[35px] rounded-[8px]">
-                <span className="text-white font-[500] ">Add </span>
+              <button 
+                className={`${u.isFriend ? "bg-white border-solid border-[#D7D7D7] border-[2px]" : "bg-main"} w-[85px] h-[35px] rounded-[8px]`}
+                onClick={u.isFriend ? () => handleRemoveFriend(u.handle) : () => handleAddFriend(u.handle)}>
+                <span className={`${u.isFriend ? "text-main" : "text-white"} font-[500] `}>{u.isFriend ? "Remove" : "Add"}</span>
               </button>
              </div>
             );

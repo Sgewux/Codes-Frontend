@@ -9,18 +9,15 @@ function Submissions(){
 
   return(
     <>
-      <div className="">
-        <Nav logged={false} role="guest"/>
-        <div className="h-[100px] w-[100vw] bg-white text-center align-middle pt-[10px]">
-          <h1 className="font-[500] text-[30px] leading-[100px]">User Submissions</h1>
-        </div>
-
-        <div className="w-[100vw]">
-          <SecondLevelMenu options={["all", "accepted", "failed"]} labels={["All", "Accepted", "Failed"]} selected={filter} select={setFilter}/>
-        </div>
-        
+      <Nav logged={false} role="guest"/>
+      <div className="h-[100px] w-[100vw] bg-white text-center align-middle pt-[10px]">
+        <h1 className="font-[500] text-[30px] leading-[100px]">User Submissions</h1>
       </div>
 
+      <div className="w-[100vw]">
+        <SecondLevelMenu options={["all", "accepted", "failed"]} labels={["All", "Accepted", "Failed"]} selected={filter} select={setFilter}/>
+      </div>
+        
       <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-260px)]">
             <SubmissionsTable/>
       </div>
