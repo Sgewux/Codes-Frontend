@@ -1,31 +1,11 @@
 import { Link } from "react-router-dom";
+import SubmissionRow from "../types/SubmissionRow";
 
 interface SubmissionsTableProps {
-  submissions: Array<{
-    id: number;
-    problem_name: string;
-    status: string;
-    date: string;
-  }>;
+  submissions: Array<SubmissionRow>;
 }
 
-function SubmissionsTable() {
-  const submissions = [
-    { id: 121312, problem_name: "Wonderful", status: "WA", date: "2025-01-07" },
-    {
-      id: 121312,
-      problem_name: "Counting Stuff",
-      status: "AC",
-      date: "2025-01-07",
-    },
-    {
-      id: 121312,
-      problem_name: "Counting Stuff",
-      status: "CE",
-      date: "2025-01-07",
-    },
-    { id: 121312, problem_name: "A + B", status: "AC", date: "2025-01-07" },
-  ]; //Should recieve this as a prop in the future
+function SubmissionsTable({ submissions }: SubmissionsTableProps) {
 
   const statusMessage = (s: string) => {
     if (s == "AC") {

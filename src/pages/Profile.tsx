@@ -1,11 +1,32 @@
+import { useState } from "react";
 import ActivityGraph from "../components/ActivityGraph";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import SubmissionsTable from "../components/SubmissionsTable";
 import UserStats from "../components/UserStats";
 import { Link, useParams } from "react-router-dom";
+import SubmissionRow from "../types/SubmissionRow";
+import Submissions from "./Submissions";
 
 function Profile() {
+  const dummySubmissions = [
+    { id: 121312, problem_name: "Wonderful", status: "WA", date: "2025-01-07" },
+    {
+      id: 121312,
+      problem_name: "Counting Stuff",
+      status: "AC",
+      date: "2025-01-07",
+    },
+    {
+      id: 121312,
+      problem_name: "Counting Stuff",
+      status: "CE",
+      date: "2025-01-07",
+    },
+    { id: 121312, problem_name: "A + B", status: "AC", date: "2025-01-07" },
+  ];
+  const[lastubmissions, setLastSubmissions] = useState<Array<SubmissionRow>>(dummySubmissions);
+
   const { handle } = useParams();
 
   return (
@@ -23,11 +44,12 @@ function Profile() {
           <h1 className="font-[500] text-[35px] py-[15px] ">
             Last Submissions
           </h1>
-          <SubmissionsTable />
+
+          <SubmissionsTable submissions={lastubmissions} />
           
-            <span className="mt-[20px] cursor-pointer text-[20px] text-main transition-[0.3s] hover:text-[#235598] ">
-              <Link to={`/users/${handle}/submissions`} target="_blank">See all submissions</Link>
-            </span>
+          <span className="mt-[20px] cursor-pointer text-[20px] text-main transition-[0.3s] hover:text-[#235598] ">
+            <Link to={`/users/${handle}/submissions`} target="_blank">See all submissions</Link>
+          </span>
           
         </div>
 

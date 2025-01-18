@@ -2,9 +2,16 @@ import { useState } from "react";
 import Nav from "../components/Nav";
 import SecondLevelMenu from "../components/SecondLevelMenu";
 import Footer from "../components/Footer";
+import CreateProblem from "../components/CreateProblem";
 
 function Problemsetter(){
   const [option, setOption] = useState<"Create" | "Read" | "Update" | "Delete">("Create");
+
+  const LoadForm = () => {
+    if(option == "Create"){
+      return <CreateProblem/>
+    }
+  };
   return (
     <>
       <Nav logged={true} activeTab="problemsetter" role="problemsetter"/>
@@ -16,8 +23,8 @@ function Problemsetter(){
         <SecondLevelMenu options={["Create", "Read", "Update", "Delete"]} labels={["Create", "Read", "Update", "Delete"]} selected={option} select={setOption}/>
       </div>
 
-      <div className="w-[100vw] bg-[#D9D9D9] min-h-[calc(100vh-260px)] py-[30px]">
-
+      <div className="w-[100vw] bg-[#D9D9D9] min-h-[calc(100vh-260px)] py-[30px] flex justify-center">
+        {LoadForm()}
       </div>
 
       <Footer/>

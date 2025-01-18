@@ -6,7 +6,22 @@ import SecondLevelMenu from "../components/SecondLevelMenu";
 
 function Submissions(){
   const[filter, setFilter] = useState<"all" | "accepted" | "failed">("all"); //according to this fetch data with useEffect
-
+  const submissions = [
+    { id: 121312, problem_name: "Wonderful", status: "WA", date: "2025-01-07" },
+    {
+      id: 121312,
+      problem_name: "Counting Stuff",
+      status: "AC",
+      date: "2025-01-07",
+    },
+    {
+      id: 121312,
+      problem_name: "Counting Stuff",
+      status: "CE",
+      date: "2025-01-07",
+    },
+    { id: 121312, problem_name: "A + B", status: "AC", date: "2025-01-07" },
+  ]; //Should recieve this as a prop in the future
   return(
     <>
       <Nav logged={false} role="guest"/>
@@ -19,7 +34,7 @@ function Submissions(){
       </div>
         
       <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-260px)]">
-            <SubmissionsTable/>
+            <SubmissionsTable submissions={submissions}/>
       </div>
 
       <Footer/>
