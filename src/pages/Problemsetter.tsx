@@ -5,15 +5,18 @@ import Footer from "../components/Footer";
 import CreateProblemForm from "../components/CreateProblemForm";
 import DeleteProblemForm from "../components/DeleteProblemForm";
 import EditProblemForm from "../components/EditProblemForm";
+import ProblemsetterProblemsTable from "../components/ProblemsetterProblemsTable";
 
 function Problemsetter(){
   const [option, setOption] = useState<"Create" | "Read" | "Update" | "Delete">("Create");
 
   const LoadForm = () => {
     if(option == "Create"){
-      return <CreateProblemForm/>
+      return <CreateProblemForm/>;
+    } else if (option == "Read"){
+      return <ProblemsetterProblemsTable/>
     } else if(option == "Update") {
-      return <EditProblemForm/>
+      return <EditProblemForm/>;
     } else if(option == "Delete"){
       return <DeleteProblemForm/>;
     }
