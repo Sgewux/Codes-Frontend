@@ -2,7 +2,7 @@ import { useState } from "react";
 import fileIcon from "../static/file_icon.png";
 import DropFile from "./DropFile";
 
-function CreateProblem() {
+function CreateProblemForm() {
   const [name, setName] = useState<string | null>(null);
   const [timeLimit, setTimeLimit] = useState<number | null>(null);
   const [memoryLimit, setmemoryLimit] = useState<number | null>(null);
@@ -16,7 +16,7 @@ function CreateProblem() {
   };
 
   return(
-    <div className="bg-white w-[1000px] border-solid border-[#B8B8B8] border-[1px] rounded-[15px] p-[25px] flex flex-col items-center">
+    <div className="bg-white w-[1000px] border-solid border-[#B8B8B8] border-[1px] rounded-[15px] p-[25px] flex flex-col items-center shadow-[1px_2px_4px_#00000040]">
       <div className="w-[800px]">
         <h1 className="font-[500] text-[30px]">Create Problem</h1>
         <div className="pl-[30px] border-solid border-l-[4px] border-[#3B3B3B] h-[150px] flex flex-col justify-center my-[20px]">
@@ -94,4 +94,4 @@ function CreateProblem() {
   );
 }
 
-export default CreateProblem;
+export default CreateProblemForm;

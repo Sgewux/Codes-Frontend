@@ -7,6 +7,7 @@ export default {
   theme: {
     colors: {
       'white': 'white',
+      'black': 'black',
       'main':'#4E80C4',
       'correct':'#19BF6E',
     },

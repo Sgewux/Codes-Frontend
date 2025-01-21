@@ -2,14 +2,20 @@ import { useState } from "react";
 import Nav from "../components/Nav";
 import SecondLevelMenu from "../components/SecondLevelMenu";
 import Footer from "../components/Footer";
-import CreateProblem from "../components/CreateProblem";
+import CreateProblemForm from "../components/CreateProblemForm";
+import DeleteProblemForm from "../components/DeleteProblemForm";
+import EditProblemForm from "../components/EditProblemForm";
 
 function Problemsetter(){
   const [option, setOption] = useState<"Create" | "Read" | "Update" | "Delete">("Create");
 
   const LoadForm = () => {
     if(option == "Create"){
-      return <CreateProblem/>
+      return <CreateProblemForm/>
+    } else if(option == "Update") {
+      return <EditProblemForm/>
+    } else if(option == "Delete"){
+      return <DeleteProblemForm/>;
     }
   };
   return (
