@@ -9,6 +9,11 @@ import Submissions from "./pages/Submissions";
 import SubmissionDetail from "./pages/SubmissionDetail";
 import Friends from "./pages/Friends";
 import Problemsetter from "./pages/Problemsetter";
+import Problem from "./pages/Problem";
+
+// Markdown rendering
+import 'katex/dist/katex.min.css';
+
 
 function App() {
   return (
@@ -23,6 +28,7 @@ function App() {
           <Route path="/submissions/:id" element={<SubmissionDetail/>}/>
           <Route path="/submit" element={<Submit/>}/>
           <Route path="/problems" element={<Problems/>}/>
+          <Route path="/problems/:id" element={<Problem/>}/>
           <Route path="/problemsetter" element={<Problemsetter/>}/>
         </Routes>
       </BrowserRouter>
