@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProblemRow from "../types/ProblemRow";
 
 interface ProblemsTableProps {
@@ -43,7 +44,9 @@ function ProblemsTable({ problems }:ProblemsTableProps ){
           return (
             <tr className={`${p.status == "AC" ? "bg-[#19BF6E] text-white" : ""}`}>
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (problems.length - 1) ? "rounded-bl-[15px]" : ""}`}>
-                <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.id}</span>
+                <Link to={`/problems/${p.id}`} target="_blank">
+                  <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.id}</span>
+                </Link>
               </th>
               <th className=" font-[400] text-[15px] w-[200px] h-[50px]">
                 {p.name}

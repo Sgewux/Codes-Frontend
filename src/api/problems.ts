@@ -1,3 +1,4 @@
+import ProblemDisplayInfo from "../types/ProblemDisplayInfo";
 import ProblemRow from "../types/ProblemRow";
 import instance from "./axios";
 
@@ -21,4 +22,8 @@ export const getProblemsByName = async (pageLen: number, page: number, user: str
         problemName:problemName
     }
   });
+};
+
+export const getProblemById = async (id: number) => {
+  return instance.get<ProblemDisplayInfo>(`/problems/${id}`);
 };

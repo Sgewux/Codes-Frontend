@@ -23,13 +23,13 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/users/:handle" element={<Profile/>}/>
-          <Route path="/users/:handle/friends" element={<Friends/>}/>
           <Route path="/users/:handle/submissions" element={<Submissions/>}/>
           <Route path="/submissions/:id" element={<SubmissionDetail/>}/>
           <Route path="/submit" element={<Submit/>}/>
           <Route path="/problems" element={<Problems/>}/>
           <Route path="/problems/:id" element={<Problem/>}/>
           <Route path="/problemsetter" element={<Problemsetter/>}/>
+          <Route path="/friends" element={<Friends/>}/>
         </Routes>
       </BrowserRouter>
     </>
