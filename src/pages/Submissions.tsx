@@ -3,9 +3,12 @@ import Nav from "../components/Nav";
 import SubmissionsTable from "../components/SubmissionsTable";
 import Footer from "../components/Footer";
 import SecondLevelMenu from "../components/SecondLevelMenu";
+import PageSelector from "../components/PageSelector";
 
 function Submissions(){
-  const[filter, setFilter] = useState<"all" | "accepted" | "failed">("all"); //according to this fetch data with useEffect
+  const [filter, setFilter] = useState<"all" | "accepted" | "failed">("all"); //according to this fetch data with useEffect
+  const [page, setPage] = useState<number>(1);
+  const [numOfPages, setNumOfPages] = useState<number>(0);
   const submissions = [
     { id: 121312, problem_name: "Wonderful", status: "WA", date: "2025-01-07" },
     {
@@ -21,7 +24,7 @@ function Submissions(){
       date: "2025-01-07",
     },
     { id: 121312, problem_name: "A + B", status: "AC", date: "2025-01-07" },
-  ]; //Should recieve this as a prop in the future
+  ];
   return(
     <>
       <Nav logged={false} role="guest"/>
@@ -34,7 +37,10 @@ function Submissions(){
       </div>
         
       <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-260px)]">
-            <SubmissionsTable submissions={submissions}/>
+        <SubmissionsTable submissions={submissions}/>
+        <div className="mt-[30px]">
+          <PageSelector numOfPages={numOfPages} currentPage={page} setPage={setPage}/>
+        </div>
       </div>
 
       <Footer/>
