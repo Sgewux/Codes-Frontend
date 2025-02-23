@@ -3,7 +3,7 @@ interface UserInfoRow {
     lastSubmissionDaysAgo: number;
     numSubmissions: number; 
     acSubmissions: number; 
-    isFriend: Boolean;
+    isFriend: boolean;
 };
 
 export default UserInfoRow;

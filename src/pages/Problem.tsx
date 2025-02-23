@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ProblemDisplayInfo from "../types/ProblemDisplayInfo";
 import { getProblemById } from "../api/problems";
 
+
 // Render markdown
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
@@ -15,6 +16,7 @@ function Problem(){
 
   const { id } = useParams();
   const [problem, setProblem] = useState<ProblemDisplayInfo>();
+  
 
   useEffect(() => {
     const getProblem = async () => {
@@ -23,7 +25,6 @@ function Problem(){
         setProblem(res.data);
       }
     };
-
     getProblem();
   }, []);
 

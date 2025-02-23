@@ -6,7 +6,6 @@ import SubmissionsTable from "../components/SubmissionsTable";
 import UserStats from "../components/UserStats";
 import { Link, useParams } from "react-router-dom";
 import SubmissionRow from "../types/SubmissionRow";
-import Submissions from "./Submissions";
 
 function Profile() {
   const dummySubmissions = [
