@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+
 function Login() {
-  const [handle, setHandle] = useState<string>();
-  const [password, setPassword] = useState<string>();
-  const handleSubmit = () => {
-    console.log(handle);
-    console.log(password);
+  const [handle, setHandle] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const { login_context, isAuthenticated, user } = useAuth();
+  const navigate = useNavigate(); 
+
+  const handleSubmit = async () => {
+    try {
+      await login_context(handle, password);
+      navigate(`/users/${user?.handle}`);
+    } catch (e) {
+      console.error("Login failed:", e);
+    }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(`/users/${user?.handle}`);
+    }
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -45,7 +61,7 @@ function Login() {
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
