@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import SubmissionRow from "../types/SubmissionRow";
 
+
 interface SubmissionsTableProps {
   submissions: Array<SubmissionRow>;
 }
 
 function SubmissionsTable({ submissions }: SubmissionsTableProps) {
-
+ 
   const statusMessage = (s: string) => {
     if (s == "AC") {
       return "Accepted";
@@ -20,7 +21,6 @@ function SubmissionsTable({ submissions }: SubmissionsTableProps) {
       return "Compilation Error";
     }
   };
-
   if (submissions.length == 0) {
     return <span>{"You haven't submitted any code :c"}</span>;
   } else {
@@ -41,6 +41,11 @@ function SubmissionsTable({ submissions }: SubmissionsTableProps) {
           </th>
         </tr>
         {submissions.map((s, i) => {
+          const formattedDate = new Date(s.date).toLocaleString("es-ES", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          });
           return (
             <tr className={`${s.status == "AC" ? "bg-[#19BF6E] text-white" : ""}`}>
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (submissions.length - 1) ? "rounded-bl-[15px]" : ""}`}>
@@ -55,7 +60,7 @@ function SubmissionsTable({ submissions }: SubmissionsTableProps) {
                 {statusMessage(s.status)}
               </th>
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (submissions.length - 1) ? "rounded-br-[15px]" : ""}`}>
-                {s.date}
+                {formattedDate}
               </th>
             </tr>
           );

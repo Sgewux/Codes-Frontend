@@ -6,7 +6,7 @@ import gh from "../static/gh.png";
 function Footer() {
   return (
     <div className="mt-[100px] h-[200px] w-[100vw] bg-white bottom-0 absolute px-[50px] pt-[20px]">
-      <div className=" border-solid border-b-[1px] border-[#9A9A9A] h-[130px] flex justify-around">
+      <div className=" border-solid border-b-[1px] pb-[140px] border-[#9A9A9A] h-[130px] flex justify-around">
         <div className="w-[500px]">
           <h1 className="font-[500] text-[30px]"><span className="text-main">C</span>od<span className="text-main">es</span></h1>
           <p className="font-[500] text-[12px] text-[#464646]">Codes was developed by three Systems and Computer Engineering students from the National University of Colombia:

@@ -1,30 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import SubmissionsTable from "../components/SubmissionsTable";
 import Footer from "../components/Footer";
 import SecondLevelMenu from "../components/SecondLevelMenu";
 import PageSelector from "../components/PageSelector";
+import { useParams } from "react-router-dom";
+import { getUserSubmissionCount, getUserSubmissions } from "../api/user";
+import SubmissionRow from "../types/SubmissionRow";
 
 function Submissions(){
-  const [filter, setFilter] = useState<"all" | "accepted" | "failed">("all"); //according to this fetch data with useEffect
+  const [filter, setFilter] = useState<"all" | "accepted" | "tried">("all"); //according to this fetch data with useEffect
   const [page, setPage] = useState<number>(1);
-  const [numOfPages, setNumOfPages] = useState<number>(0);
-  const submissions = [
-    { id: 121312, problem_name: "Wonderful", status: "WA", date: "2025-01-07" },
-    {
-      id: 121312,
-      problem_name: "Counting Stuff",
-      status: "AC",
-      date: "2025-01-07",
-    },
-    {
-      id: 121312,
-      problem_name: "Counting Stuff",
-      status: "CE",
-      date: "2025-01-07",
-    },
-    { id: 121312, problem_name: "A + B", status: "AC", date: "2025-01-07" },
-  ];
+  const [numOfPages, setNumOfPages] = useState<number>(-1);
+  const[submissions, setSubmissions] = useState<Array<SubmissionRow>>([]);
+  const { handle } = useParams();
+
+  useEffect(() => {
+    setPage(1); 
+    setNumOfPages(-1);
+  }, [filter]);
+  
+  useEffect(() => {
+    const fetchSubmissions = async () => {
+      if (!handle || typeof handle !== "string") {
+        console.error(`Invalid handle: ${handle}`);
+        return;
+      }
+  
+      try {
+        const response = await getUserSubmissions(handle, 4, page, filter);
+        const countSubmissions = await getUserSubmissionCount(handle, filter)
+        setSubmissions(response.data.submissions);
+        if(numOfPages == -1) setNumOfPages(Math.ceil(countSubmissions.data.submissionCount / response.data.submissions.length))
+        
+      } catch (error) {
+        console.error(`Error fetching submissions`, error);
+      }
+    };
+  
+    fetchSubmissions();
+  }, [handle, filter, page, numOfPages]);
+
   return(
     <>
       <Nav logged={false} role="guest"/>
@@ -33,7 +49,7 @@ function Submissions(){
       </div>
 
       <div className="w-[100vw]">
-        <SecondLevelMenu options={["all", "accepted", "failed"]} labels={["All", "Accepted", "Failed"]} selected={filter} select={setFilter}/>
+        <SecondLevelMenu options={["all", "accepted", "tried"]} labels={["All", "Accepted", "tried"]} selected={filter} select={setFilter}/>
       </div>
         
       <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-260px)]">

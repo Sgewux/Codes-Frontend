@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ActivityGraph from "../components/ActivityGraph";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
@@ -6,27 +6,31 @@ import SubmissionsTable from "../components/SubmissionsTable";
 import UserStats from "../components/UserStats";
 import { Link, useParams } from "react-router-dom";
 import SubmissionRow from "../types/SubmissionRow";
+import { getUserSubmissions } from "../api/user";
 
 function Profile() {
-  const dummySubmissions = [
-    { id: 121312, problem_name: "Wonderful", status: "WA", date: "2025-01-07" },
-    {
-      id: 121312,
-      problem_name: "Counting Stuff",
-      status: "AC",
-      date: "2025-01-07",
-    },
-    {
-      id: 121312,
-      problem_name: "Counting Stuff",
-      status: "CE",
-      date: "2025-01-07",
-    },
-    { id: 121312, problem_name: "A + B", status: "AC", date: "2025-01-07" },
-  ];
-  const[lastubmissions, setLastSubmissions] = useState<Array<SubmissionRow>>(dummySubmissions);
+
+  const[lastubmissions, setLastSubmissions] = useState<Array<SubmissionRow>>([]);
 
   const { handle } = useParams();
+
+  useEffect(() => {
+    const fetchSubmissions = async () => {
+      if (!handle || typeof handle !== "string") {
+        console.error(`Invalid handle: ${handle}`);
+        return;
+      }
+  
+      try {
+        const response = await getUserSubmissions(handle, 4, 1, "all");
+        setLastSubmissions(response.data.submissions);
+      } catch (error) {
+        console.error(`Error fetching submissions`, error);
+      }
+    };
+  
+    fetchSubmissions();
+  }, [handle]);
 
   return (
     <>
