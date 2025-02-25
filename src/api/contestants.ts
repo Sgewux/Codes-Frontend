@@ -1,5 +1,3 @@
-import ContestantInfoRow from "../types/ContestantInfoRow";
-import SubmissionActivity from "../types/SubmissionActivity";
 import instance from "./axios";
 
 export const getSubmissionActivity = async (handle: string, from: string, to: string) => {

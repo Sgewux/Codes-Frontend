@@ -6,7 +6,6 @@ import SecondLevelMenu from "../components/SecondLevelMenu";
 import PageSelector from "../components/PageSelector";
 import { useParams } from "react-router-dom";
 import { getUserSubmissionCount, getUserSubmissions } from "../api/user";
-import SubmissionRow from "../types/SubmissionRow";
 
 function Submissions(){
   const [filter, setFilter] = useState<"all" | "accepted" | "tried">("all"); //according to this fetch data with useEffect
@@ -43,13 +42,13 @@ function Submissions(){
 
   return(
     <>
-      <Nav logged={false} role="guest"/>
+      <Nav/>
       <div className="h-[100px] w-[100vw] bg-white text-center align-middle pt-[10px]">
-        <h1 className="font-[500] text-[30px] leading-[100px]">User Submissions</h1>
+        <h1 className="font-[500] text-[30px] leading-[100px]">{`${handle}'s Submissions`}</h1>
       </div>
 
       <div className="w-[100vw]">
-        <SecondLevelMenu options={["all", "accepted", "tried"]} labels={["All", "Accepted", "tried"]} selected={filter} select={setFilter}/>
+        <SecondLevelMenu options={["all", "accepted", "tried"]} labels={["All", "Accepted", "Tried"]} selected={filter} select={setFilter}/>
       </div>
         
       <div className="flex flex-col  items-center  bg-[#D9D9D9] py-[30px] w-[100vw] min-h-[calc(100vh-260px)]">

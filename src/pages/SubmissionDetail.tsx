@@ -58,7 +58,7 @@ int main(){
     <>
       <div>
         <div className="flex flex-col justify-around items-center">
-          <Nav logged={false} role={"guest"} />
+          <Nav/>
           <div className="h-[80px] w-[100vw] bg-white text-center align-middle ">
             <h1 className="font-[500] text-[30px] leading-[80px]">
               Submission: {submission.id}

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import ProblemsTable from "../components/ProblemsTable";
-import ProblemRow from "../types/ProblemRow";
 import { getProblems, getProblemsByName } from "../api/problems";
 import PageSelector from "../components/PageSelector";
 import Footer from "../components/Footer";
 import SecondLevelMenu from "../components/SecondLevelMenu";
+import { useAuth } from "../context/AuthContext";
 
 function Problems(){
+  const { user } = useAuth();
   const [filter, setFilter] = useState<"all" | "accepted" | "tried" >("all"); //according to this fetch data with useEffect
   const [problems, setProblems] = useState<Array<ProblemRow>>();
   const [page, setPage] = useState<number>(1);
@@ -29,13 +30,14 @@ function Problems(){
 
   useEffect(() => {
     const get = async () => {
+      const handle = user?.handle ? user.handle : null;
       if(search){
         setFilter("all");
-        const res = await getProblemsByName(pageLenght, page, "shollyero", search);
+        const res = await getProblemsByName(pageLenght, page, handle, search);
         setProblems(res.data.problems);
         setNumOfPages(res.data.numOfPages);
       } else {
-        const res = await getProblems(pageLenght, page, "shollyero", filter);
+        const res = await getProblems(pageLenght, page, handle, filter);
         setProblems(res.data.problems);
         setNumOfPages(res.data.numOfPages);
       }
@@ -50,7 +52,7 @@ function Problems(){
     return(
       <>
 
-      <Nav activeTab={"problems"} logged={false} role="guest"/>
+      <Nav activeTab={"problems"}/>
       <div className="h-[100px] w-[100vw] bg-white text-center align-middle pt-[10px]">
         <h1 className="font-[500] text-[30px] leading-[100px]">Problemset</h1>
       </div>

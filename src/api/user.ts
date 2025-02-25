@@ -1,4 +1,3 @@
-import SubmissionRow from "../types/SubmissionRow";
 import instance from "./axios";
 
 export const get_AC_statistics = async (handle: string) => {

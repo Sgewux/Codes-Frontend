@@ -31,7 +31,7 @@ function PageSelector({ numOfPages, currentPage, setPage }: pageSelectorProps) {
       <div className="bg-white h-[30px] px-[5px] text-center border-solid mx-[2px] align-middle leading-[30px]">
         <span>Page</span>
         <input id="page-input" type="text" 
-          placeholder={currentPage.toString()} 
+          placeholder={numOfPages != 0 ? currentPage.toString() : '0'} 
           className={` placeholder:text-[#000000] mx-[5px] text-center`} 
           size={numOfPages.toString().length}
           onKeyUp={(e) => handleInputChange(e)}

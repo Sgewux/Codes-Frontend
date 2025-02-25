@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
-import ProblemDisplayInfo from "../types/ProblemDisplayInfo";
 import { getProblemById } from "../api/problems";
 
 
@@ -10,10 +9,11 @@ import { getProblemById } from "../api/problems";
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import { useAuth } from "../context/AuthContext";
 
 
 function Problem(){
-
+  const { user } = useAuth();
   const { id } = useParams();
   const [problem, setProblem] = useState<ProblemDisplayInfo>();
   
@@ -31,7 +31,7 @@ function Problem(){
   if(problem){
     return (
       <>
-        <Nav logged={true} role="contestant"/>
+        <Nav/>
         <div className="w-[100vw] min-h-[calc(100vh-80px)] bg-white flex flex-col items-center py-[30px]">
           <div className="h-[300px] flex flex-col items-center justify-around">
             <div className="w-[200px] py-[5px] border-solid border-black border-[1px] rounded-[5px] text-center">
