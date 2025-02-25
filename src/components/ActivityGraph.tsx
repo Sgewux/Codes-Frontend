@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import SubmissionActivity from "../types/SubmissionActivity";
+import { useEffect, useState } from "react";;
 import { getSubmissionActivity } from "../api/contestants";
 import { useParams } from "react-router-dom";
 

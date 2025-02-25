@@ -21,7 +21,7 @@ function Footer() {
             </div>
             <div className="flex justify-center align-middle leading-[16px]  py-[5px]">
               <img src={phone} className="h-[20px] w-[20px] inline" />
-              <p className="mx-[3px]">+57 xxx xxxxxxx</p>
+              <p className="mx-[3px]">+57 318 5382148</p>
             </div>
             <div className="flex justify-center align-middle leading-[16px]  py-[5px]">
               <a href="https://github.com/cmottao" target="_blank">

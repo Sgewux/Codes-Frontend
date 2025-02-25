@@ -1,5 +1,3 @@
-import ProblemDisplayInfo from "../types/ProblemDisplayInfo";
-import ProblemRow from "../types/ProblemRow";
 import instance from "./axios";
 
 export const getProblems = async (pageLen: number, page: number, user: string | null, filter: ("all" | "accepted" | "tried")) => {

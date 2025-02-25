@@ -5,14 +5,15 @@ import Nav from "../components/Nav";
 import SubmissionsTable from "../components/SubmissionsTable";
 import UserStats from "../components/UserStats";
 import { Link, useParams } from "react-router-dom";
-import SubmissionRow from "../types/SubmissionRow";
 import { getUserSubmissions } from "../api/user";
+import { useAuth } from "../context/AuthContext";
 
 function Profile() {
 
   const[lastubmissions, setLastSubmissions] = useState<Array<SubmissionRow>>([]);
 
   const { handle } = useParams();
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -34,10 +35,10 @@ function Profile() {
 
   return (
     <>
-      <Nav logged={true} role="admin" />
+      <Nav/>
       <div className="flex flex-col items-center justify-around gap-[20px]">
         <div className="text-center mt-[15px]">
-          <h3 className="text-main font-[300] text-[20px]">Welcome Back!</h3>
+          {user?.handle === handle ? <h3 className="text-main font-[300] text-[20px]">Welcome Back!</h3> : ''}
           <h1 className="text-[30px] font-[500]">{handle}</h1>
         </div>
         <div className="w-[1000px]">

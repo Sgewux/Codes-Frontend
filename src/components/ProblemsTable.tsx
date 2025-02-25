@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ProblemRow from "../types/ProblemRow";
 
 interface ProblemsTableProps {
   problems: Array<ProblemRow>;

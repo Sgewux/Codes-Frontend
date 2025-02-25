@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import SubmissionRow from "../types/SubmissionRow";
+import { Link, useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 interface SubmissionsTableProps {
@@ -7,7 +7,8 @@ interface SubmissionsTableProps {
 }
 
 function SubmissionsTable({ submissions }: SubmissionsTableProps) {
- 
+  const { user } = useAuth();
+  const { handle } = useParams();
   const statusMessage = (s: string) => {
     if (s == "AC") {
       return "Accepted";
@@ -22,7 +23,11 @@ function SubmissionsTable({ submissions }: SubmissionsTableProps) {
     }
   };
   if (submissions.length == 0) {
-    return <span>{"You haven't submitted any code :c"}</span>;
+    if(user?.handle === handle){
+      return <span className="text-[#464646] font-[700] text-[20px]">{"You haven't submitted any code :("}</span>;
+    } else {
+      return <span className="text-[#464646] font-[700] text-[20px]">{`${handle} hasn't submitted any code :(`}</span>;
+    }
   } else {
     return (
       <table className="border-collapse w-[80%] shadow-[0_1px_4px_#00000040] rounded-[15px] bg-white">

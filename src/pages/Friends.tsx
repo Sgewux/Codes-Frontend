@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import SecondLevelMenu from "../components/SecondLevelMenu";
 import Footer from "../components/Footer";
-import ContestantInfoRow from "../types/ContestantInfoRow";
 import { getContestantsForFriendsPage, searchContestantsForFriendsPage } from "../api/contestants";
 import PageSelector from "../components/PageSelector";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Friends() {
+  const { user } = useAuth();
   const [filter, setFilter] = useState<"all" | "friends">("all");
   const [page, setPage] = useState<number>(1);
   const [numOfPages, setNumOfPages] = useState<number>(0);
@@ -46,7 +48,9 @@ function Friends() {
         buffer.push(
         <div className="bg-white shadow-[1px_2px_4px_#00000040] rounded-[8px] w-[750px] h-[100px] flex justify-around items-center">
           <div className="w-[200px]">
-            <h3 className="font-[700] text-[18px]">{u.handle}</h3>
+            <Link to={`/users/${u.handle}`} target="_blank">
+              <h3 className="font-[700] text-[18px]">{u.handle}</h3>
+            </Link>
             <p><span className="text-[#19BF6E]">{u.ACSubmissions}</span>/{u.submissions}</p>
           </div>
           <div className="text-[#464646]">
@@ -69,15 +73,17 @@ function Friends() {
 
   useEffect(() => {
     const get = async () => {
-      if(search){
-        setFilter("all");
-        const res = await searchContestantsForFriendsPage(pageLenght, page, 'shollyero', search);
-        setContestants(res.data.contestants);
-        setNumOfPages(res.data.numOfPages);
-      } else {
-        const res = await getContestantsForFriendsPage(pageLenght, page, 'shollyero', filter);
-        setContestants(res.data.contestants);
-        setNumOfPages(res.data.numOfPages);
+      if(user?.handle){
+        if(search){
+          setFilter("all");
+          const res = await searchContestantsForFriendsPage(pageLenght, page, user.handle, search);
+          setContestants(res.data.contestants);
+          setNumOfPages(res.data.numOfPages);
+        } else {
+          const res = await getContestantsForFriendsPage(pageLenght, page, user.handle, filter);
+          setContestants(res.data.contestants);
+          setNumOfPages(res.data.numOfPages);
+        }
       }
     };
 
@@ -88,7 +94,7 @@ function Friends() {
   if(contestants){
     return (
       <>
-        <Nav logged={true} activeTab="friends" role="contestant"/>
+        <Nav activeTab="friends"/>
         <div className="h-[100px] w-[100vw] bg-white text-center align-middle pt-[10px]">
           <h1 className="font-[500] text-[30px] leading-[100px]">Add Friends</h1>
         </div>

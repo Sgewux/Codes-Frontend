@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ProblemsetterProblemRow from "../types/ProblemsetterProblemRow";
 
 function ProblemsetterProblemsTable(){
   const dummyProblems = [
