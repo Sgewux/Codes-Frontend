@@ -1,18 +1,47 @@
-import { useState } from "react";
-import fileIcon from "../static/file_icon.png";
+import { useEffect, useState } from "react";
 import DropFile from "./DropFile";
+import { NewProblem } from "../types/NewProblem";
+import { createProblem } from "../api/CRUD";
+import { useParams } from "react-router-dom";
+
 
 function CreateProblemForm() {
+  const { handle } = useParams<{ handle: string }>();
+  const [newProblem, setNewProblem] = useState<NewProblem | null>(null);
   const [name, setName] = useState<string | null>(null);
   const [timeLimit, setTimeLimit] = useState<number | null>(null);
-  const [memoryLimit, setmemoryLimit] = useState<number | null>(null);
+  const [memoryLimit, setMemoryLimit] = useState<number | null>(null);
   const [statementContent, setStatementContent] = useState<string | null>(null);
   const [testCasesContent, setTestCasesContent] = useState<string | null>(null);
   const [expectedOutContent, setExpectedOutContent] = useState<string | null>(null);
   const [editorialContent, setEditorialContent] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (newProblem) {
+      createProblem(newProblem)
+        .then(() => console.log("The problem was successfully created"))
+        .catch((error) => console.error("Error", error));
+    }
+  }, [newProblem]);
+
+  console.log(handle);
+
   const handleSubmit = () => {
-    console.log(editorialContent);
+    if (!name || !timeLimit || !memoryLimit || !statementContent || !testCasesContent || !expectedOutContent || !editorialContent) {
+      console.error("There is not enough data to create the problem.");
+      return;
+    }
+  
+    setNewProblem({
+      name: name,
+      statement: statementContent,
+      editorial: editorialContent,
+      time_limit_seconds: timeLimit,
+      memory_limit_mb: memoryLimit,
+      problemsetter_handle: handle ?? "",
+      input: testCasesContent,
+      output: expectedOutContent,
+    });
   };
 
   return(
@@ -65,7 +94,7 @@ function CreateProblemForm() {
             <div>
               <p>MemoryLimit (MB)</p>
               <input type="number" className="w-[350px] h-[45px] border-solid border-[#B8B8B8] border-[1px] rounded-[5px] pl-[5px]" 
-                onChange={(e) => {setmemoryLimit(parseInt(e.target.value))}}
+                onChange={(e) => {setMemoryLimit(parseInt(e.target.value))}}
               />
             </div>
 
@@ -94,4 +123,4 @@ function CreateProblemForm() {
   );
 }
 
-export default CreateProblemForm;
+export default CreateProblemForm

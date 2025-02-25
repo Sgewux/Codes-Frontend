@@ -32,9 +32,9 @@ function App() {
             <Route path="/submit" element={<Submit />} />
             <Route path="/problems" element={<Problems />} />
             <Route path="/problems/:id" element={<Problem />} />
-            <Route path="/problemsetter" element={<Problemsetter />} />
+            <Route path="/:handle/problemsetter" element={<Problemsetter />} />
             <Route path="/friends" element={<Friends />} />
-          </Route>  
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
