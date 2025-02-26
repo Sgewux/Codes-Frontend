@@ -1,10 +1,11 @@
 export { };
 declare global {
   interface ProblemsetterProblemRow {
-    id: number;
-    name: string;
-    publishDate: string;
-    acceptedSubmissions: number;
-    numberOfSubmissions: number;
+    problem_id: number;
+    problem_name: string;
+    problemsetter_handle: string;
+    problem_editorial: string;
+    accepted_submissions: number;
+    total_submissions: number;
   };
 }

@@ -19,16 +19,24 @@ function CreateProblemForm() {
   useEffect(() => {
     if (newProblem) {
       createProblem(newProblem)
-        .then(() => console.log("The problem was successfully created"))
-        .catch((error) => console.error("Error", error));
+        .then(() => {window.location.reload(); alert("The problem was successfully created") } )
+        .catch((error) => { alert("Something went wrong. Please try again later."); console.log("Error", error) });
     }
   }, [newProblem]);
 
-  console.log(handle);
-
   const handleSubmit = () => {
     if (!name || !timeLimit || !memoryLimit || !statementContent || !testCasesContent || !expectedOutContent || !editorialContent) {
-      console.error("There is not enough data to create the problem.");
+      alert("Please make sure to fill in all the required fields.");
+      return;
+    }
+
+    if (timeLimit <= 0 || timeLimit > 5) {
+      alert("Please enter a valid positive time limit less than or equal to 5.");
+      return;
+    }
+    
+    if (memoryLimit <= 0 || memoryLimit > 1024) {
+      alert("Please enter a valid positive memory limit less than or equal to 1024.");
       return;
     }
   
