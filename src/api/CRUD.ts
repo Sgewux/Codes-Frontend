@@ -2,7 +2,7 @@ import instance from "./axios";
 import { NewProblem } from "../types/NewProblem";
 
 export const createProblem = async (newProblem: NewProblem) => {
-    return instance.post("/create-problems", newProblem);
+    return instance.post("/problems", newProblem);
 };
   
 export const readProblem = async (handle: string) => {
