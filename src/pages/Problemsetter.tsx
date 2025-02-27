@@ -23,7 +23,7 @@ function Problemsetter(){
   };
   return (
     <>
-      <Nav logged={true} activeTab="problemsetter" role="problemsetter"/>
+      <Nav  activeTab="problemsetter" />
       <div className="h-[100px] w-[100vw] bg-white text-center align-middle pt-[10px]">
         <h1 className="font-[500] text-[30px] leading-[100px]">Problemsetter</h1>
       </div>

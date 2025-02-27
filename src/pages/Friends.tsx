@@ -73,7 +73,9 @@ function Friends() {
 
   useEffect(() => {
     const get = async () => {
+      console.log(user);
       if(user?.handle){
+
         if(search){
           setFilter("all");
           const res = await searchContestantsForFriendsPage(pageLenght, page, user.handle, search);

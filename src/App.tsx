@@ -25,7 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* <Route element={<ProtectedRoute />}> */}
+          <Route element={<ProtectedRoute />}>
             <Route path="/users/:handle" element={<Profile />} />
             <Route path="/users/:handle/submissions" element={<Submissions />} />
             <Route path="/submissions/:id" element={<SubmissionDetail />} />
@@ -34,7 +34,7 @@ function App() {
             <Route path="/problems/:id" element={<Problem />} />
             <Route path="/:handle/problemsetter" element={<Problemsetter />} />
             <Route path="/friends" element={<Friends />} />
-          {/* </Route> */}
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

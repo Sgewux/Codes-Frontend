@@ -24,7 +24,7 @@ function PageSelector({ numOfPages, currentPage, setPage }: pageSelectorProps) {
   };
 
   return (
-    <div className="flex flex-row border-solid border-[#D9D9D9] border-[2px] ]">
+    <div className={`flex flex-row border-solid border-[#D9D9D9] border-[2px] ] ${numOfPages > 0 ? "" : "hidden"}`}>
       <button className="bg-white h-[30px] w-[30px] rounded-l-[10px] disabled:cursor-not-allowed" onClick={() => handleChangePage(-1)} disabled={currentPage == 1}>
         {"<"}
       </button>
