@@ -4,25 +4,32 @@ import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { getProblemById } from "../api/problems";
 
-
 // Render markdown
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import { useAuth } from "../context/AuthContext";
+import NotFound from "./NotFound";
+import { AxiosError } from "axios";
+
 
 
 function Problem(){
-  const { user } = useAuth();
   const { id } = useParams();
   const [problem, setProblem] = useState<ProblemDisplayInfo>();
+  const [notFound, setNotFound] = useState<boolean>(false);
   
 
   useEffect(() => {
     const getProblem = async () => {
       if(id && !isNaN(parseInt(id))){
-        const res = await getProblemById(parseInt(id));
-        setProblem(res.data);
+        try {
+          const res = await getProblemById(parseInt(id));
+          setProblem(res.data);
+        } catch (e) {
+          if(e instanceof AxiosError && e.status == 404){
+            setNotFound(true);
+          }
+        }
       }
     };
     getProblem();
@@ -75,7 +82,12 @@ function Problem(){
       </>
     );
   } else {
-    return <p>loading...</p>
+    if(notFound){
+      return <NotFound/>
+    } else {
+      return <p>loading...</p>
+    }
+
   }
 
 }

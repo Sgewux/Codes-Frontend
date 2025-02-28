@@ -15,6 +15,7 @@ import { AuthProvider } from "./context/AuthContext";
 // Markdown rendering
 import 'katex/dist/katex.min.css';
 import ProtectedRoute from "./components/ProtectedRoute";
+import Editorial from "./pages/Editorial";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/submit" element={<Submit />} />
             <Route path="/problems" element={<Problems />} />
             <Route path="/problems/:id" element={<Problem />} />
+            <Route path="/problems/:id/editorial" element={<Editorial/>} />
             <Route path="/:handle/problemsetter" element={<Problemsetter />} />
             <Route path="/friends" element={<Friends />} />
           </Route>
