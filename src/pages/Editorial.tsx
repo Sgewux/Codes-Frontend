@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import { useParams } from "react-router-dom";
+import { getProblemById } from "../api/problems";
+import { AxiosError } from "axios";
+import NotFound from "./NotFound";
 
 // Render markdown
 import Markdown from "react-markdown";
@@ -9,69 +12,54 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
 
-
 function Editorial(){
   const { id } = useParams();
-  const [text, setText] = useState<string|null>();
+  const [problem, setProblem] = useState<ProblemInfo|null>(null);
   const [visiblePercentage, setVisiblePercentage] = useState<number>(25);
   const [contentHeight, setContentHeight] = useState<number>(0);
+  const [notFound, setNotFound] = useState<boolean>(false);
   const divRef = useRef<HTMLDivElement | null>(null);
-  const textD = `## The Role of Mathematics in Problem Solving  
-
-Mathematics plays a crucial role in solving real-world problems, from engineering to economics. One of the most fundamental concepts is optimization, where we seek to maximize or minimize a function given certain constraints. For example, in machine learning, we often minimize a **loss function** $L(\theta)$ to improve model accuracy:  
-
-$$
-\\theta^* = \\arg\\min_{\\theta} L(\\theta)
-$$  
-
-Another essential area is combinatorics, which helps in counting possibilities and analyzing complexity. The number of ways to arrange $n$ distinct objects is given by the factorial function:  
-
-$$
-n! = n \\times (n-1) \\times (n-2) \\times \\dots \\times 1
-$$  
-
-## The Power of Mathematical Thinking  
-
-Mathematical thinking is not just about numbers; it's about **logical reasoning and abstraction**. Consider graph theory, where we model relationships using nodes and edges. A common problem is finding the shortest path between two points, often solved using **Dijkstra's Algorithm**, which efficiently finds the minimum cost path in a weighted graph.  
-
-Probability theory also plays a role in decision-making. The **Bayes' theorem** helps update beliefs based on new evidence:  
-
-$$
-P(A \\mid B) = \\frac{P(B \\mid A) P(A)}{P(B)}
-$$  
-
-These mathematical tools allow us to approach problems systematically, ensuring accuracy and efficiency in a wide range of fields.  
-`;
 
   useEffect(() => {
-    setText(textD);
+    const getProblem = async () => {
+      if(id && !isNaN(parseInt(id))){
+        try {
+          const res = await getProblemById(parseInt(id));
+          setProblem(res.data);
+        } catch (e) {
+          if(e instanceof AxiosError && e.status == 404){
+            setNotFound(true);
+          }
+        }
+      }
+    };
+    getProblem();
   }, []);
 
   useEffect(() => {
     //Scroll height is the height of everything that is inside the div (even if it overflows)
-    console.log(divRef.current?.scrollHeight);
     if(divRef.current?.scrollHeight){
       setContentHeight(divRef.current.scrollHeight);
     } else {
       setContentHeight(0);
     }
-  }, [text]);
+  }, [problem]);
 
   const increaseVisibility = () => {
     setVisiblePercentage(Math.min(100, visiblePercentage + 25));
   };
 
-  if(text){
+  if(problem){
     return(
       <>
         <Nav/>
         <div className="w-[100vw] min-h-[calc(100vh-80px)] py-[30px] px-[100px] flex flex-col items-center gap-[30px]">
           <div className="flex flex-col items-center">
             <h3 className="text-main font-[300] text-[20px]">Editorial</h3>
-            <h1 className="font-[500] text-[30px]">Problem Name</h1>
+            <h1 className="font-[500] text-[30px]">{problem.name}</h1>
           </div>
   
-          <div className="border-solid border-l-[3px] border-main px-[15px] overflow-hidden h-[396px]"
+          <div className="border-solid border-l-[3px] border-main px-[15px] overflow-hidden h-[396px] w-[80vw]"
             ref={divRef}
             style={{
               height: `${Math.ceil(visiblePercentage*contentHeight/100)}px`,
@@ -88,7 +76,7 @@ These mathematical tools allow us to approach problems systematically, ensuring 
                 h3: ({ children }) => <h3 className="text-xl font-semibold">{children}</h3>,
                 p: ({ children }) => <p className="mb-4">{children}</p>,
               }}>
-              {text}
+              {problem.editorial}
             </Markdown>
           </div>
           {visiblePercentage < 100 
@@ -103,7 +91,11 @@ These mathematical tools allow us to approach problems systematically, ensuring 
       </>
     );
   } else {
-    return <p>Loading...</p>;
+    if(notFound){
+      return <NotFound/>
+    } else {
+      return <p>Loading...</p>;  
+    }
   }
 
 }

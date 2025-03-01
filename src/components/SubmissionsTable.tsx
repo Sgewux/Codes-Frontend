@@ -9,6 +9,7 @@ interface SubmissionsTableProps {
 function SubmissionsTable({ submissions }: SubmissionsTableProps) {
   const { user } = useAuth();
   const { handle } = useParams();
+
   const statusMessage = (s: string) => {
     if (s == "AC") {
       return "Accepted";
@@ -52,7 +53,10 @@ function SubmissionsTable({ submissions }: SubmissionsTableProps) {
             day: "2-digit",
           });
           return (
-            <tr className={`${s.status == "AC" ? "bg-[#19BF6E] text-white" : ""}`}>
+            <tr 
+              className={`${s.status == "AC" ? "bg-[#19BF6E] text-white hover:bg-[#18ad65]" : "hover:bg-[#f0f0f0] "}  cursor-pointer transition-colors duration-[0.3s]`}
+              onClick={() => {window.open(`/submissions/${s.id}`, "_blank")}}
+              >
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (submissions.length - 1) ? "rounded-bl-[15px]" : ""}`}>
                 <Link to={`/submissions/${s.id}`} target="_blank">
                   <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{s.id}</span>

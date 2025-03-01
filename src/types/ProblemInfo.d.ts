@@ -1,9 +1,10 @@
 export { };
 declare global {
-  interface ProblemDisplayInfo {
+  interface ProblemInfo {
     name: string;
     author: string;
     timeLimitSeconds: number;
     statement: string;
+    editorial: string;
   };
 }

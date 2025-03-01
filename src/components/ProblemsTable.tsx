@@ -41,7 +41,10 @@ function ProblemsTable({ problems }:ProblemsTableProps ){
       </tr>
       {problems.map((p, i) => {
           return (
-            <tr className={`${p.status == "AC" ? "bg-[#19BF6E] text-white" : ""}`}>
+            <tr 
+              className={`${p.status == "AC" ? "bg-[#19BF6E] text-white hover:bg-[#18ad65]"  : "hover:bg-[#f0f0f0] "}  cursor-pointer transition-colors duration-[0.3s]`} 
+              onClick={() => window.open(`/problems/${p.id}`, "_blank")}>
+
               <th className={`font-[400] text-[15px] w-[200px] h-[50px] ${i == (problems.length - 1) ? "rounded-bl-[15px]" : ""}`}>
                 <Link to={`/problems/${p.id}`} target="_blank">
                   <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.id}</span>
