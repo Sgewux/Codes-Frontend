@@ -1,21 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { getProblemById } from "../api/problems";
+import NotFound from "./NotFound";
+import { AxiosError } from "axios";
 
 // Render markdown
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import NotFound from "./NotFound";
-import { AxiosError } from "axios";
-
 
 
 function Problem(){
   const { id } = useParams();
-  const [problem, setProblem] = useState<ProblemDisplayInfo>();
+  const navigate = useNavigate();
+  const [problem, setProblem] = useState<ProblemInfo>();
   const [notFound, setNotFound] = useState<boolean>(false);
   
 
@@ -70,7 +70,7 @@ function Problem(){
   
           </div>
           <div className="flex justify-around w-[50vw]">
-              <button className="bg-main w-[250px] h-[45px] text-center rounded-[8px]" onClick={() => {}}>
+              <button className="bg-main w-[250px] h-[45px] text-center rounded-[8px]" onClick={() => {navigate(`/problems/${id}/editorial`)}}>
                 <span className="font-[700] text-white text-[20px]">Need a Hint?</span>
               </button>
               <button className="bg-main w-[250px] h-[45px] text-center rounded-[8px]" onClick={() => {}}>

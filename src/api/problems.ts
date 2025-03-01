@@ -23,5 +23,5 @@ export const getProblemsByName = async (pageLen: number, page: number, user: str
 };
 
 export const getProblemById = async (id: number) => {
-  return instance.get<ProblemDisplayInfo>(`/problems/${id}`);
+  return instance.get<ProblemInfo>(`/problems/${id}`);
 };
