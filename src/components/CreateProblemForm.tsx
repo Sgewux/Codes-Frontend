@@ -58,9 +58,7 @@ function CreateProblemForm() {
         <h1 className="font-[500] text-[30px]">Create Problem</h1>
         <div className="pl-[30px] border-solid border-l-[4px] border-[#3B3B3B] h-[150px] flex flex-col justify-center my-[20px]">
           <p className="font-[400] text-[20px] w-[700px]">
-            Be carefull! You will not be able to edit the test cases or expected output in the future. 
-            It is also reccomended to provide a clear and complete explanation of the input constraints and output format (with expamples if possible) 
-            within the problem statement
+          Be careful! You will not be able to edit the test cases or expected output in the future. It is also recommended to provide a clear and complete explanation of the input constraints and output format (with examples if possible) within the problem statement.
             </p>
         </div>
       </div>

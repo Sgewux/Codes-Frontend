@@ -29,8 +29,6 @@ function DeleteProblemForm() {
       alert("You need to choose a problem.");
       return;
     }
-
-    console.log(selectedValue)
   
     try {
       await deleteProblem(Number(selectedValue));

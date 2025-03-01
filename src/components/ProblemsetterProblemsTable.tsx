@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { readProblem } from "../api/CRUD";
 
 function ProblemsetterProblemsTable(){
@@ -9,14 +9,17 @@ function ProblemsetterProblemsTable(){
 
 
   useEffect(() => {
+   
     const loadProblems = async () => {
       if(handle){
+        
         try {
           const data = await readProblem(handle); 
           setProblems(data.data.problems)
-
+      
         } catch (error) {
-          console.log("Error al cargar los problemas", error); 
+          console.log("Error", error)
+          alert("Something went wrong. Please try again later.");
         }
       } 
       
@@ -58,9 +61,14 @@ function ProblemsetterProblemsTable(){
               {p.problem_name}
             </td>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
+            <Link 
+              to={`/problems/${p.problem_id}/editorial`}
+              className="text-[#4E80C4] underline"
+            >
               {p.problem_editorial.length > 20
                 ? `${p.problem_editorial.slice(0, 20)}...`
                 : p.problem_editorial}
+            </Link>
             </td>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
               <span className="text-[#19BF6E]">{p.accepted_submissions}</span> / {p.total_submissions}
