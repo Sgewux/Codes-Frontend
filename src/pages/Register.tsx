@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import ErrorMessage from "../components/ErrorMesage";
+import { AxiosError } from "axios";
 
 function Register() {
   const [handle, setHandle] = useState<string>("");
@@ -9,12 +11,15 @@ function Register() {
   const [secondName, setSecondName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmedPassword, setConfirmedPassword] = useState<string>();
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string|undefined>();
   const { register_context, isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (password !== confirmedPassword) {
-      console.error("Passwords do not match");
+      setError(true);
+      setErrorMessage("Passwords do not match");
       return;
     }
 
@@ -22,7 +27,11 @@ function Register() {
       await register_context(handle, password, firstName, secondName);
       navigate(`/users/${user?.handle}`);
     } catch (e) {
-      console.error("Login failed:", e);
+      if(e instanceof AxiosError){
+        const resData = e.response?.data as {message?: string};
+        setError(true);
+        setErrorMessage(resData.message);
+      }
     }
   };
 
@@ -36,8 +45,12 @@ function Register() {
     <>
       <div className="bgx">
         <div className=" h-[100vh] w-[100vw] flex justify-center items-center bg-[linear-gradient(white_50%,#4E80C4_50%)]">
-          <div className="h-[525px] w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px]">
+          <div className="min-h-[525px] min-w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px] flex flex-col items-center justify-around">
             <h1 className="text-[45px] font-[500] text-center">Register</h1>
+            
+            <div className=" w-[400px]">
+              <ErrorMessage active={error} message={errorMessage ? errorMessage : ""}/>
+            </div>
 
             <div className="flex flex-col items-center gap-[10px] mt-[10px]">
               <div>

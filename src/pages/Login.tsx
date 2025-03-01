@@ -2,10 +2,14 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { AxiosError } from "axios";
+import ErrorMessage from "../components/ErrorMesage";
 
 function Login() {
   const [handle, setHandle] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string|undefined>();
   const { login_context, isAuthenticated, user } = useAuth();
   const navigate = useNavigate(); 
 
@@ -14,7 +18,13 @@ function Login() {
       await login_context(handle, password);
       navigate(`/users/${user?.handle}`);
     } catch (e) {
-      console.error("Login failed:", e);
+      if(e instanceof AxiosError){
+        const resData = e.response?.data as {message?: string};
+        setError(true);
+        setErrorMessage(resData.message);
+      } else {
+        console.log(e);
+      }
     }
   };
 
@@ -27,10 +37,14 @@ function Login() {
   return (
     <>
       <div className=" h-[100vh] w-[100vw] flex justify-center items-center bg-[linear-gradient(white_50%,#4E80C4_50%)]">
-        <div className="h-[400px] w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px]">
+        <div className="min-h-[400px] min-w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px] flex flex-col items-center justify-around">
           <h1 className="text-[45px] font-[500] text-center">Login</h1>
 
-          <div className="flex flex-col items-center gap-[30px] mt-[30px]">
+          <div className=" w-[400px]">
+            <ErrorMessage active={error} message={errorMessage ? errorMessage : ""}/>
+          </div>
+
+          <div className="flex flex-col items-center gap-[30px]">
             <div>
               <label className="text-[20px] font-[400] block">Handle</label>
               <input
