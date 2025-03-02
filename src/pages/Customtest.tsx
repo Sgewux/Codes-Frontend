@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { customtest } from "../api/customtest";
 
 export default function CustomTest() {
   const [code, setCode] = useState("");
@@ -9,20 +10,28 @@ export default function CustomTest() {
 
   const handleRun = async () => {
     setOutput("Running...");
-    setTimeout(() => {
-      setOutput("Execution result will appear here.");
-    }, 1000);
+    try {
+      const { data } = await customtest(code, input);
+
+      if (data.status === "OK") {
+        setOutput(`Execution Time: ${data.execution_time}s\nOutput:\n${data.output}`);
+      } else {
+        setOutput(`Status: ${data.status}\nLog:\n${data.log}`);
+      }
+    } catch (e) {
+      setOutput("An error occurred while executing the code.");
+    }
   };
 
   return (
     <>
-      <Nav />
+      <Nav  activeTab="customtest" />
       <div className="flex flex-col items-center p-6">
         <h2 className="text-2xl font-semibold mb-4">Custom Test</h2>
         <div className="w-full max-w-4xl flex space-x-6 h-96">
           <div className="w-2/3 flex flex-col space-y-4">
             <textarea
-              className="w-full flex-grow p-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 font-mono"
+              className="w-full flex-grow p-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 font-mono resize-none"
               placeholder="Paste your C++ code here"
               value={code}
               onChange={(e) => setCode(e.target.value)}
@@ -30,14 +39,17 @@ export default function CustomTest() {
           </div>
           <div className="w-1/3 flex flex-col space-y-4 h-full">
             <textarea
-              className="w-full flex-grow p-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 font-mono"
+              className="w-full flex-grow p-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 font-mono resize-none"
               placeholder="Enter custom input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
-            <div className="w-full flex-grow p-4 border rounded-lg shadow-sm bg-gray-100 font-mono">
-              <p className="text-gray-600">{output || "Output will be displayed here."}</p>
-            </div>
+          <textarea
+            className="w-full h-1/2 p-4 border rounded-lg shadow-sm bg-gray-100 font-mono overflow-auto resize-none"
+            placeholder="Output will be displayed here."
+            value={output}
+            readOnly
+          />
           </div>
         </div>
       </div>

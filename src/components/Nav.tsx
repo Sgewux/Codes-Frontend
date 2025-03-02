@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 interface NavProps {
-  activeTab?: "problems" | "friends" | "problemsetter";
+  activeTab?: "problems" | "friends" | "problemsetter" | "customtest";
 }
 
 function Nav({ activeTab }: NavProps) {
@@ -63,6 +63,15 @@ function Nav({ activeTab }: NavProps) {
             <Link to={"/problems"}>
               <span className={`text-[18px] cursor-pointer ${activeTab == "problems" ? "text-[#4E80C4] font-[500]" : "font-[300]"} transition-[0.3s] hover:text-[#235598]`}>
                 Problems
+              </span>
+            </Link>
+
+          </div>
+
+          <div className={`h-[80px] ${activeTab == "customtest" ? "border-solid border-[#4E80C4] border-b-[3px]" : ""}`}>
+            <Link to={"/customtest"}>
+              <span className={`text-[18px] cursor-pointer ${activeTab == "customtest" ? "text-[#4E80C4] font-[500]" : "font-[300]"} transition-[0.3s] hover:text-[#235598]`}>
+                Customtest
               </span>
             </Link>
 
