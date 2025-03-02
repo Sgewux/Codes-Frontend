@@ -21,6 +21,8 @@ function SubmissionsTable({ submissions }: SubmissionsTableProps) {
       return "Runtime Error";
     } else if (s == "CE") {
       return "Compilation Error";
+    } else if (s == "QU") {
+      return "In Queue";
     }
   };
   if (submissions.length == 0) {
