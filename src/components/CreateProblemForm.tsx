@@ -77,16 +77,16 @@ function CreateProblemForm() {
             <div>
               <p>Statement (.md file)</p>
               <div 
-                className="w-[350px] h-[150px] border-solid border-[#B8B8B8] border-[1px] rounded-[5px]">
-                  <DropFile contentSetter={setStatementContent} fileExtention=".md"/>
+                className="w-[350px] h-[150px] rounded-[5px]">
+                  <DropFile contentSetter={setStatementContent} fileExtension=".md"/>
               </div>
             </div>
 
             <div>
               <p>TestCases (.txt file)</p>
               <div 
-                className="w-[350px] h-[150px] border-solid border-[#B8B8B8] border-[1px] rounded-[5px]">
-                  <DropFile contentSetter={setTestCasesContent} fileExtention=".txt"/>
+                className="w-[350px] h-[150px] rounded-[5px]">
+                  <DropFile contentSetter={setTestCasesContent} fileExtension=".txt"/>
               </div>
             </div>
             
@@ -109,8 +109,8 @@ function CreateProblemForm() {
             <div>
               <p>Expected output (.txt file)</p>
               <div 
-                className="w-[350px] h-[150px] border-solid border-[#B8B8B8] border-[1px] rounded-[5px]">
-                  <DropFile contentSetter={setExpectedOutContent} fileExtention=".txt"/>
+                className="w-[350px] h-[150px] rounded-[5px]">
+                  <DropFile contentSetter={setExpectedOutContent} fileExtension=".txt"/>
               </div>
             </div>
 
@@ -119,8 +119,8 @@ function CreateProblemForm() {
         <div>
           <p>Editorial (.md file)</p>
           <div 
-            className="w-[800px] h-[150px] border-solid border-[#B8B8B8] border-[1px] rounded-[5px]">
-              <DropFile contentSetter={setEditorialContent} fileExtention=".md"/>
+            className="w-[800px] h-[150px] rounded-[5px]">
+              <DropFile contentSetter={setEditorialContent} fileExtension=".md"/>
           </div>
         </div>
         <button className="bg-main w-[250px] h-[30px] rounded-[8px]" onClick={() => handleSubmit()}>

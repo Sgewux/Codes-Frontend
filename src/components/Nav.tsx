@@ -18,7 +18,7 @@ function Nav({ activeTab }: NavProps) {
   };
 
   const loadLogoutOrRegister = () => {
-    if(Boolean(user)){
+    if(user){
       return (
         <div className={`w-[18vw] flex justify-around items-center px-[20px] leading-[80px]`} onClick={handleLogout}>
           <span className={`text-[18px] cursor-pointer transition-[0.3s] hover:text-[#235598] font-[300]`}>
@@ -80,7 +80,7 @@ function Nav({ activeTab }: NavProps) {
 
           {(user?.roles.includes("problem_setter")) ?
             (<div className={`h-[80px] ${activeTab == "problemsetter" ? "border-solid border-[#4E80C4] border-b-[3px]" : ""}`}>
-              <Link to="/problemsetter">
+              <Link to={`/problemsetter/${user.handle}`}>
                 <span className={`text-[18px] cursor-pointer ${activeTab == "problemsetter" ? "text-[#4E80C4] font-[500]" : "font-[300]"} transition-[0.3s] hover:text-[#235598]`}>
                   Problemsetter
                 </span>

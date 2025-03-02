@@ -102,20 +102,20 @@ function EditProblemForm() {
         <div className="flex justify-around w-[inherit]">
           <div>
             <p>Statement (.md file)</p>
-            <div className="w-[350px] h-[200px] border-solid border-[1px] border-[#B8B8B8] rounded-[5px]">
+            <div className="w-[350px] h-[200px] rounded-[5px]">
               <DropFile
                 contentSetter={setStatementContent}
-                fileExtention=".md"
+                fileExtension=".md"
               />
             </div>
           </div>
 
           <div>
             <p>Editorial (.md file)</p>
-            <div className="w-[350px] h-[200px] border-solid border-[1px] border-[#B8B8B8] rounded-[5px]">
+            <div className="w-[350px] h-[200px] rounded-[5px]">
               <DropFile
                 contentSetter={setEditorialContent}
-                fileExtention=".md"
+                fileExtension=".md"
               />
             </div>
           </div>
