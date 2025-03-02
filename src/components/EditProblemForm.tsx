@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DropFile from "./DropFile";
 import { useParams } from "react-router-dom";
-import { updateProblem, readProblem } from "../api/CRUD";
+import { updateProblem, readProblem } from "../api/problems";
 
 function EditProblemForm() {
   const [editorialContent, setEditorialContent] = useState<string | null>(null);

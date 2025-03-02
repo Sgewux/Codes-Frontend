@@ -18,10 +18,11 @@ function Login() {
       await login_context(handle, password);
       navigate(`/users/${user?.handle}`);
     } catch (e) {
-      if(e instanceof AxiosError){
-        const resData = e.response?.data as {message?: string};
+      if (e instanceof AxiosError) {
+        const resData = e.response?.data as { message?: string };
         setError(true);
         setErrorMessage(resData.message);
+        setTimeout(() => setError(false), 3000);
       } else {
         console.log(e);
       }
@@ -37,14 +38,14 @@ function Login() {
   return (
     <>
       <div className=" h-[100vh] w-[100vw] flex justify-center items-center bg-[linear-gradient(white_50%,#4E80C4_50%)]">
-        <div className="min-h-[400px] min-w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px] flex flex-col items-center justify-around">
+        <div className="min-h-[450px] min-w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px] flex flex-col items-center justify-center gap-[30px]">
           <h1 className="text-[45px] font-[500] text-center">Login</h1>
-
-          <div className=" w-[400px]">
-            <ErrorMessage active={error} message={errorMessage ? errorMessage : ""}/>
-          </div>
-
           <div className="flex flex-col items-center gap-[30px]">
+                        
+            <div className={`${error ? "block" : "hidden"} w-[300px]`}>
+              <ErrorMessage active={error} message={errorMessage ? errorMessage : ""} />
+            </div>
+
             <div>
               <label className="text-[20px] font-[400] block">Handle</label>
               <input

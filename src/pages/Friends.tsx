@@ -6,6 +6,7 @@ import { getContestantsForFriendsPage, searchContestantsForFriendsPage } from ".
 import PageSelector from "../components/PageSelector";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { createFriendship, deleteFriendship } from "../api/friend";
 
 function Friends() {
   const { user } = useAuth();
@@ -16,12 +17,36 @@ function Friends() {
   const [contestants, setContestants] = useState<Array<ContestantInfoRow> | null>(null);
   const pageLenght = 5;
   
-  const handleAddFriend = (handle: string)  => {
-    console.log("add", handle);
-  };
+  const handleToggleFriend = async (friendHandle: string, isCurrentlyFriend: boolean) => {
+    if (!user) return alert("User not authenticated");
+  
+    const newFriend: Friend = {
+      contestantHandle: user.handle,
+      friendHandle: friendHandle,
+    };
+  
+    try {
+      if (isCurrentlyFriend) {
+        await deleteFriendship(newFriend);
+      } else {
+        await createFriendship(newFriend);
+      }
+  
+      setContestants((prev) => {
+        if (!prev) return [];
 
-  const handleRemoveFriend = (handle: string)  => {
-    console.log("rm", handle);
+        const index = prev.findIndex((u) => u.handle === friendHandle);
+        if (index === -1) return prev;
+      
+        const updatedContestants = [...prev];
+        updatedContestants[index] = { ...updatedContestants[index], isFriend: !isCurrentlyFriend };
+      
+        return updatedContestants;
+      });
+    } catch (error) {
+      console.error(`Error ${isCurrentlyFriend ? "removing" : "adding"} friend:`, error);
+      alert(`Failed to ${isCurrentlyFriend ? "remove" : "add"} friend.`);
+    }
   };
   
 
@@ -60,8 +85,10 @@ function Friends() {
           </div>
           <button 
             className={`${u.isFriend ? "bg-white border-solid border-[#D7D7D7] border-[2px]" : "bg-main"} w-[85px] h-[35px] rounded-[8px]`}
-            onClick={u.isFriend ? () => handleRemoveFriend(u.handle) : () => handleAddFriend(u.handle)}>
-            <span className={`${u.isFriend ? "text-main" : "text-white"} font-[500] `}>{u.isFriend ? "Remove" : "Add"}</span>
+            onClick={() => handleToggleFriend(u.handle, u.isFriend)}>
+            <span className={`${u.isFriend ? "text-main" : "text-white"} font-[500] `}>
+              {u.isFriend ? "Remove" : "Add"}
+            </span>
           </button>
          </div>
         );
@@ -73,7 +100,6 @@ function Friends() {
 
   useEffect(() => {
     const get = async () => {
-      console.log(user);
       if(user?.handle){
 
         if(search){

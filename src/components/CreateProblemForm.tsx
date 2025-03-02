@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import DropFile from "./DropFile";
 import { NewProblem } from "../types/NewProblem";
-import { createProblem } from "../api/CRUD";
+import { createProblem } from "../api/problems";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 function CreateProblemForm() {
+  const { user } = useAuth();
   const { handle } = useParams<{ handle: string }>();
   const [newProblem, setNewProblem] = useState<NewProblem | null>(null);
   const [name, setName] = useState<string | null>(null);
@@ -41,7 +43,7 @@ function CreateProblemForm() {
     }
   
     setNewProblem({
-      name: name,
+      name: user?.handle || null,
       statement: statementContent,
       editorial: editorialContent,
       time_limit_seconds: timeLimit,

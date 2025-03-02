@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteProblem, readProblem } from "../api/CRUD";
+import { deleteProblem, readProblem } from "../api/problems";
 import { useParams } from "react-router-dom";
 
 function DeleteProblemForm() {

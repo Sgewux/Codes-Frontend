@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { readProblem } from "../api/CRUD";
+import { readProblem } from "../api/problems";
 
 function ProblemsetterProblemsTable(){
 

@@ -1,5 +1,5 @@
 export interface NewProblem {
-    name: string;
+    name: string | null;
     statement: string;
     editorial: string;
     time_limit_seconds: number;
