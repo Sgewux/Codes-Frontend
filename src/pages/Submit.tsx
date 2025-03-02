@@ -1,101 +1,91 @@
-import { useState } from "react";
-import fileIcon from "../static/file_icon.png";
+import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
+import Nav from "../components/Nav";
+import DropFile from "../components/DropFile";
+import { getProblemById } from "../api/problems";
+import { useParams } from "react-router-dom";
+import { AxiosError } from "axios";
+import NotFound from "./NotFound";
 
 function Submit() {
-  const [uploadedCode, setUploadedCode] = useState<string | null>(null);
-  const [pastedCode, setPastedCode] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string | null>(null);
-
-  const dropHandler = (e: React.DragEvent) => {
-    e.preventDefault();
-    const [file, _] = e.dataTransfer.files;
-    const reader = new FileReader();
-
-    if (file && file.type == "text/plain" && file.name.slice(-4) == ".cpp") {
-      reader.readAsText(file);
-
-      reader.onload = () => {
-        if (typeof reader.result == "string") {
-          setUploadedCode(reader.result);
-          setFileName(file.name);
-        }
-      };
-    } else {
-      alert("Upload a proper C++ file");
-    }
-  };
-
-  const dragOverHandler = (e: React.DragEvent) => {
-    console.log("in drop zone");
-    e.preventDefault();
-  };
+  const { id } = useParams();
+  const [droppedCode, setDroppedCode] = useState<string|null>(null);
+  const [pastedCode, setPastedCode] = useState<string|null>(null);
+  const [problem, setProblem] = useState<ProblemInfo|null>(null);
+  const [notFound, setNotFound] = useState<boolean>(false);
 
   const handleSubmit = () => {
-    if (uploadedCode) {
-      console.log(uploadedCode);
-    } else if (pastedCode) {
-      console.log(pastedCode);
-    } else {
-      alert("You must either paste a code or upload a C++ file.");
-    }
+
   };
 
-  return (
-    <>
-      <div className="h-[100vh] w-[100vw] ">
-        <div className="h-[60vh] flex flex-col  items-center bg-white">
-          <div className="w-[90vw] text-left mt-[20px]">
-            <h3 className="text-main font-[300] text-[15px]">Submit</h3>
-            <h1 className="text-[20px] font-[500]">Problem Name</h1>
-          </div>
+  useEffect(() => {
+    const getProblem = async () => {
+      if(id && !isNaN(parseInt(id))){
+        try {
+          const res = await getProblemById(parseInt(id));
+          setProblem(res.data);
+        } catch (e) {
+          if(e instanceof AxiosError && e.status == 404){
+            setNotFound(true);
+          }
+        }
+      }
+    };
+    getProblem();
+  }, []);
 
-          <div className="text-left">
-            <h3 className="text-main font-[300] text-[20px]">
-              Paste your code here
-            </h3>
-            <div className="w-[1000px] h-[265px] bg-[#B8B8B8] rounded-[15px] flex justify-center items-center">
+  if(problem){
+    return (
+      <>
+      <Nav/>
+      <div className="w-[100vw] min-h-[calc(100vh-80px)] bg-white flex flex-col items-center py-[30px] gap-[30px]">
+        <div className="h-[200px] flex flex-col items-center justify-around">
+          <h3 className="text-main text-[20px] font-[400]">Submit your solution</h3>
+          <h1 className="text-[45px] font-[400]">{problem.name}</h1>
+          <svg width={60} height={3}>
+            <rect x={0} y={0} width={60} height={3} fill="#959393"/>
+          </svg>
+          <div className="text-[#ABABAB] text-[15px] font-[700] text-center">
+            <p>Make sure your solution is in C++</p>
+            <p>You can drag and drop or paste your code</p>
+          </div>
+        </div>
+  
+        <div>
+          <h3 className="text-main text-[20px] font-[300]">Drag and drop</h3>
+          <div className="w-[950px] h-[165px]">
+            <DropFile fileExtension=".cpp" contentSetter={setDroppedCode}/>
+          </div>
+        </div>
+  
+        <div>
+          <h3 className="text-main text-[20px] font-[300]">Paste your code</h3>
+          <div className="w-[950px] ">
               <textarea
-                className="h-[245px] w-[980px] p-[10px] rounded-[15px] resize-none"
-                onChange={(e) => setPastedCode(e.target.value)}
+                className="w-full h-[410px] p-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 font-mono resize-none"
+                placeholder="Paste your C++ code here"
+                value={pastedCode ? pastedCode : ''}
+                onChange={(e) => {setPastedCode(e.target.value)}}
               />
             </div>
-          </div>
         </div>
-
-        <div className="h-[40vh] flex flex-col items-center justi  bg-main ">
-          <div className="text-left ">
-            <h3 className="text-white font-[300] text-[20px]">
-              Or drop your file here
-            </h3>
-            <div
-              className="bg-[#F3F3F3] h-[150px] w-[1000px] rounded-[15px] shadow-[0_1px_4px_#00000040] flex justify-center items-center"
-              onDragOver={(e) => dragOverHandler(e)}
-              onDrop={(e) => {
-                dropHandler(e);
-              }}
-            >
-              {!fileName ? (
-                <img src={fileIcon} className="h-[35px] w-[35px]" />
-              ) : (
-                <p>{fileName}</p>
-              )}
-            </div>
-            <div className="flex justify-center items-center my-[20px]">
-              <button className="bg-[#F3F3F3] w-[100px] h-[30px] rounded-[18px]">
-                <span className="text-main" onClick={() => handleSubmit()}>
-                  Good Luck!
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
+  
+        <button className="w-[130px] h-[38px] bg-main text-white rounded-[5px] text-[20px]" 
+          onClick={() => handleSubmit()}>Submit
+        </button>
       </div>
-
       <Footer/>
-    </>
+      </>
+    );
+  } else {
+    if(notFound){
+      return <NotFound/>;
+    } else {
+      return <p>Loading...</p>;
+    }
+  }
 
-  );
+
 }
 
 export default Submit;

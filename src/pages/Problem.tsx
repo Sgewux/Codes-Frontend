@@ -73,7 +73,7 @@ function Problem(){
               <button className="bg-main w-[250px] h-[45px] text-center rounded-[8px]" onClick={() => {navigate(`/problems/${id}/editorial`)}}>
                 <span className="font-[700] text-white text-[20px]">Need a Hint?</span>
               </button>
-              <button className="bg-main w-[250px] h-[45px] text-center rounded-[8px]" onClick={() => {}}>
+              <button className="bg-main w-[250px] h-[45px] text-center rounded-[8px]" onClick={() => {navigate(`/problems/${id}/submit`)}}>
                 <span className="font-[700] text-white text-[20px]">Submit</span>
               </button>
           </div>

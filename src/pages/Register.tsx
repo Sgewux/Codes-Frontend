@@ -20,6 +20,7 @@ function Register() {
     if (password !== confirmedPassword) {
       setError(true);
       setErrorMessage("Passwords do not match");
+      setTimeout(() => setError(false), 3000);
       return;
     }
 
@@ -31,6 +32,7 @@ function Register() {
         const resData = e.response?.data as {message?: string};
         setError(true);
         setErrorMessage(resData.message);
+        setTimeout(() => setError(false), 3000);
       }
     }
   };
@@ -102,7 +104,7 @@ function Register() {
 
               <div>
                 <button
-                  className="bg-main w-[145px] h-[38px] rounded-[20px]"
+                  className="bg-main w-[145px] h-[38px] rounded-[5px]"
                   onClick={handleSubmit}
                 >
                   <span className="text-white font-[500] text-[20px]">

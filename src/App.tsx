@@ -34,9 +34,9 @@ function App() {
             <Route path="/users/:handle" element={<Profile />} />
             <Route path="/users/:handle/submissions" element={<Submissions />} />
             <Route path="/submissions/:id" element={<SubmissionDetail />} />
-            <Route path="/submit" element={<Submit />} />
             <Route path="/problems" element={<Problems />} />
             <Route path="/problems/:id" element={<Problem />} />
+            <Route path="/problems/:id/submit" element={<Submit />} />
             <Route path="/problems/:id/editorial" element={<Editorial/>} />
 
             <Route element={<ProtectedRoute requiredRole="problem_setter" />}>

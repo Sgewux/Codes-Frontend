@@ -42,7 +42,7 @@ function Login() {
           <h1 className="text-[45px] font-[500] text-center">Login</h1>
           <div className="flex flex-col items-center gap-[30px]">
                         
-            <div className={`${error ? "block" : "hidden"} w-[300px]`}>
+            <div className={` w-[300px]`}>
               <ErrorMessage active={error} message={errorMessage ? errorMessage : ""} />
             </div>
 
@@ -66,7 +66,7 @@ function Login() {
 
             <div>
               <button
-                className="bg-main w-[145px] h-[38px] rounded-[20px]"
+                className="bg-main w-[145px] h-[38px] rounded-[5px]"
                 onClick={handleSubmit}
               >
                 <span className="text-white font-[500] text-[20px]">Enter</span>

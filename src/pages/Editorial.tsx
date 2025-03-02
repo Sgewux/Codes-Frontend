@@ -83,7 +83,7 @@ function Editorial(){
             ? <span className="text-main font-[500] text-[20px] cursor-pointer" onClick={increaseVisibility}>Read more...</span> 
             : ''}
           {visiblePercentage < 100 
-            ? <button className="w-[130px] h-[38px] bg-main text-white rounded-[25px] text-[20px]" 
+            ? <button className="w-[130px] h-[38px] bg-main text-white rounded-[5px] text-[20px]" 
               onClick={() => setVisiblePercentage(100)}>Show All</button> 
             : ''}
         </div>
