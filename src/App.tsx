@@ -17,6 +17,7 @@ import 'katex/dist/katex.min.css';
 import ProtectedRoute from "./components/ProtectedRoute";
 import Editorial from "./pages/Editorial";
 import NotFound from "./pages/NotFound";
+import CustomTest from "./pages/Customtest";
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          
+          <Route path="/customtest" element={<CustomTest />} />
 
           <Route element={<ProtectedRoute requiredRole="contestant" />}>
             <Route path="/users/:handle" element={<Profile />} />
