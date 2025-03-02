@@ -43,12 +43,12 @@ function CreateProblemForm() {
     }
   
     setNewProblem({
-      name: user?.handle || null,
+      name: name,
       statement: statementContent,
       editorial: editorialContent,
       time_limit_seconds: timeLimit,
       memory_limit_mb: memoryLimit,
-      problemsetter_handle: handle ?? "",
+      problemsetter_handle:  user?.handle || "",
       input: testCasesContent,
       output: expectedOutContent,
     });

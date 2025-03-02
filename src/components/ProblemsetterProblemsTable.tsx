@@ -15,7 +15,7 @@ function ProblemsetterProblemsTable(){
         
         try {
           const data = await readProblem(handle); 
-          setProblems(data.data.problems)
+          setProblems(data.data.problems.reverse())
       
         } catch (error) {
           console.log("Error", error)
