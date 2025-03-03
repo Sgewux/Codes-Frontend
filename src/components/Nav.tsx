@@ -71,7 +71,7 @@ function Nav({ activeTab }: NavProps) {
           <div className={`h-[80px] ${activeTab == "customtest" ? "border-solid border-[#4E80C4] border-b-[3px]" : ""}`}>
             <Link to={"/customtest"}>
               <span className={`text-[18px] cursor-pointer ${activeTab == "customtest" ? "text-[#4E80C4] font-[500]" : "font-[300]"} transition-[0.3s] hover:text-[#235598]`}>
-                Customtest
+                Custom Test
               </span>
             </Link>
 

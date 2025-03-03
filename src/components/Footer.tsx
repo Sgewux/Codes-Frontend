@@ -14,55 +14,55 @@ function Footer() {
         </div>
 
           <div className="text-center flex-row justify-around gap-[10px]">
-            <h3 className="py-[5px]"><span className="text-main">C</span>ristian</h3>
-            <div className="flex justify-center align-middle leading-[16px] py-[5px]">
-              <img src={email} className="h-[20px] w-[20px] inline" />
-              <p className="mx-[3px]">cmottao@unal.edu.co</p>
+            <h3 className="py-[5px] text-[15px]"><span className="text-main">C</span>ristian</h3>
+            <div className="flex justify-center items-center leading-[16px] py-[5px]">
+              <img src={email} className="pr-[2px] h-[15px] w-auto inline" />
+              <p className="mx-[3px] text-[13px]">cmottao@unal.edu.co</p>
             </div>
-            <div className="flex justify-center align-middle leading-[16px]  py-[5px]">
-              <img src={phone} className="h-[20px] w-[20px] inline" />
-              <p className="mx-[3px]">+57 318 5382148</p>
+            <div className="flex justify-center items-center leading-[16px]  py-[5px]">
+              <img src={phone} className="h-[15px] w-auto inline" />
+              <p className="mx-[3px] text-[13px]">+57 318 5382148</p>
             </div>
-            <div className="flex justify-center align-middle leading-[16px]  py-[5px]">
+            <div className="flex justify-center items-center leading-[16px]  py-[5px]">
               <a href="https://github.com/cmottao" target="_blank">
-                <img src={gh} className="h-[20px] w-[20px] inline" />
+                <img src={gh} className="h-[15px] w-auto inline" />
               </a>
             </div>
           </div>
 
           <div className="text-center flex-row justify-around gap-[10px]">
-            <h3 className="py-[5px]"><span className="text-main">E</span>steban</h3>
-            <div className="flex justify-center align-middle leading-[16px] py-[5px]">
-              <img src={email} className="h-[20px] w-[20px] inline" />
-              <p className="mx-[3px]">justantacruzc@unal.edu.co</p>
+            <h3 className="py-[5px] text-[15px]"><span className="text-main">E</span>steban</h3>
+            <div className="flex justify-center items-center leading-[16px] py-[5px]">
+              <img src={email} className="pr-[2px] h-[15px] w-auto inline" />
+              <p className="mx-[3px] text-[13px]">justantacruzc@unal.edu.co</p>
             </div>
-            <div className="flex justify-center align-middle leading-[16px]  py-[5px]">
-              <img src={phone} className="h-[20px] w-[20px] inline" />
-              <p className="mx-[3px]">+57 317 3588999</p>
+            <div className="flex justify-center items-center leading-[16px]  py-[5px]">
+              <img src={phone} className="h-[15px] w-auto inline" />
+              <p className="mx-[3px] text-[13px]">+57 317 3588999</p>
             </div>
-            <div className="flex justify-center align-middle leading-[16px]  py-[5px] gap-[5px]">
+            <div className="flex justify-center items-center leading-[16px]  py-[5px] gap-[5px]">
               <a href="https://github.com/Jestebansamt" target="_blank">
-                <img src={gh} className="h-[20px] w-[20px] inline" />
+                <img src={gh} className="h-[15px] w-auto inline" />
               </a>
               <a href="https://www.youtube.com/@document0761" target="_blank">
-                <img src={yt} className="h-[20px] w-[20px] inline" />
+                <img src={yt} className="h-[15px] w-auto inline" />
               </a>
             </div>
           </div>
 
           <div className="text-center flex-row justify-around gap-[10px]">
-            <h3 className="py-[5px]"><span className="text-main">S</span>ebastian</h3>
-            <div className="flex justify-center align-middle leading-[16px] py-[5px]">
-              <img src={email} className="h-[20px] w-[20px] inline" />
-              <p className="mx-[3px]">sandradec@unal.edu.co</p>
+            <h3 className="py-[5px] text-[15px]"><span className="text-main">S</span>ebastian</h3>
+            <div className="flex justify-center items-center leading-[16px] py-[5px]">
+              <img src={email} className="pr-[2px] h-[15px] w-auto inline" />
+              <p className="mx-[3px] text-[13px]">sandradec@unal.edu.co</p>
             </div>
-            <div className="flex justify-center align-middle leading-[16px]  py-[5px]">
-              <img src={phone} className="h-[20px] w-[20px] inline" />
-              <p className="mx-[3px]">+57 318 5392147</p>
+            <div className="flex justify-center items-center leading-[16px]  py-[5px]">
+              <img src={phone} className="h-[15px] w-auto inline" />
+              <p className="mx-[3px] text-[13px]">+57 318 5392147</p>
             </div>
-            <div className="flex justify-center align-middle leading-[16px]  py-[5px]">
+            <div className="flex justify-center items-center leading-[16px]  py-[5px]">
               <a href="https://github.com/Sgewux" target="_blank">
-                <img src={gh} className="h-[20px] w-[20px] inline" />
+                <img src={gh} className="h-[15px] w-auto inline" />
               </a>
             </div>
           </div>

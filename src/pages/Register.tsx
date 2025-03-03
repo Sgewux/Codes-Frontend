@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import ErrorMessage from "../components/ErrorMesage";
 import { AxiosError } from "axios";
@@ -47,7 +47,7 @@ function Register() {
     <>
       <div className="bgx">
         <div className=" h-[100vh] w-[100vw] flex justify-center items-center bg-[linear-gradient(white_50%,#4E80C4_50%)]">
-          <div className="min-h-[525px] min-w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px] flex flex-col items-center justify-around">
+          <div className="min-h-[550px] min-w-[460px] shadow-[0_0_8px_#00000040] rounded-[15px] bg-white p-[15px] flex flex-col items-center justify-around">
             <h1 className="text-[45px] font-[500] text-center">Register</h1>
             
             <div className=" w-[400px]">
@@ -101,6 +101,13 @@ function Register() {
                   onChange={(e) => setConfirmedPassword(e.target.value)}
                 />
               </div>
+
+              <div>
+                <Link to="/login" className="text-[#4E80C4] underline">
+                  Already have an account? Log in!
+                </Link>
+              </div>
+
 
               <div>
                 <button

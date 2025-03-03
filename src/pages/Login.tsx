@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { AxiosError } from "axios";
 import ErrorMessage from "../components/ErrorMesage";
@@ -62,6 +62,12 @@ function Login() {
                 className="border-solid border-[2px] border-[#B8B8B8] rounded-[8px] w-[300px] h-[35px] p-1"
                 onChange={(e) => setPassword(e.target.value)}
               />
+            </div>
+
+            <div>
+              <Link to="/register" className="text-[#4E80C4] underline">
+                Don't have an account? Sign up!
+              </Link>
             </div>
 
             <div>

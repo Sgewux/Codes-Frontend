@@ -52,7 +52,7 @@ function UserStats() {
             </span>
           </div>
           <span className="font-[300] text-[18px] text-[#7D7C7C]">
-            Problems solved for all time
+            All-time submissions
           </span>
         </div>
       </div>
@@ -65,7 +65,7 @@ function UserStats() {
             </span>
           </div>
           <span className="font-[300] text-[18px] text-[#7D7C7C]">
-            Problems solved the last month
+            Problems solved last month
           </span>
         </div>
       </div>
@@ -78,7 +78,7 @@ function UserStats() {
             </span>
           </div>
           <span className="font-[300] text-[18px] text-[#7D7C7C]">
-            Submissions for all time
+            Total submissions
           </span>
         </div>
       </div>
