@@ -104,11 +104,11 @@ function Friends() {
 
         if(search){
           setFilter("all");
-          const res = await searchContestantsForFriendsPage(pageLenght, page, user.handle, search);
+          const res = await searchContestantsForFriendsPage(pageLenght, page, search);
           setContestants(res.data.contestants);
           setNumOfPages(res.data.numOfPages);
         } else {
-          const res = await getContestantsForFriendsPage(pageLenght, page, user.handle, filter);
+          const res = await getContestantsForFriendsPage(pageLenght, page, filter);
           setContestants(res.data.contestants);
           setNumOfPages(res.data.numOfPages);
         }
