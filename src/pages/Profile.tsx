@@ -24,7 +24,7 @@ function Profile() {
   
       try {
         const response = await getUserSubmissions(handle, 4, 1, "all");
-        setLastSubmissions(response.data.submissions);
+        setLastSubmissions(response.data.submissions.reverse());
       } catch (error) {
         console.error(`Error fetching submissions`, error);
       }

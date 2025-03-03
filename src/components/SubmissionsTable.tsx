@@ -9,7 +9,7 @@ interface SubmissionsTableProps {
 function SubmissionsTable({ submissions }: SubmissionsTableProps) {
   const { user } = useAuth();
   const { handle } = useParams();
-
+  
   const statusMessage = (s: string) => {
     if (s == "AC") {
       return "Accepted";

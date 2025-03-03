@@ -29,7 +29,7 @@ function Submissions(){
       try {
         const response = await getUserSubmissions(handle, 4, page, filter);
         const countSubmissions = await getUserSubmissionCount(handle, filter)
-        setSubmissions(response.data.submissions);
+        setSubmissions(response.data.submissions.reverse());
         if(numOfPages == -1) setNumOfPages(Math.ceil(countSubmissions.data.submissionCount / response.data.submissions.length))
         
       } catch (error) {

@@ -58,7 +58,7 @@ function ProblemsetterProblemsTable(){
               <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.problem_id}</span>
             </td>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
-              {p.problem_name}
+              {p.problem_name} hola
             </td>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
             <Link 
@@ -83,3 +83,4 @@ function ProblemsetterProblemsTable(){
 }
 
 export default ProblemsetterProblemsTable;
+
