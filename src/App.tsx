@@ -18,6 +18,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Editorial from "./pages/Editorial";
 import NotFound from "./pages/NotFound";
 import CustomTest from "./pages/Customtest";
+import Home from "./pages/Home";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 

@@ -74,7 +74,7 @@ function Register() {
               </div>
 
               <div>
-                <label className="text-[20px] font-[400] block">Second name</label>
+                <label className="text-[20px] font-[400] block">Last Name</label>
                 <input
                   type="text"
                   className="border-solid border-[2px] border-[#B8B8B8] rounded-[8px] w-[300px] h-[35px] p-1"

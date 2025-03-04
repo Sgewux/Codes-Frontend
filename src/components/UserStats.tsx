@@ -52,7 +52,7 @@ function UserStats() {
             </span>
           </div>
           <span className="font-[300] text-[18px] text-[#7D7C7C]">
-            All-time submissions
+            Problem solved for all time
           </span>
         </div>
       </div>

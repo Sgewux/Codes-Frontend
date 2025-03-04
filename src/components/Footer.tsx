@@ -10,7 +10,7 @@ function Footer() {
         <div className="w-[500px]">
           <h1 className="font-[500] text-[30px]"><span className="text-main">C</span>od<span className="text-main">es</span></h1>
           <p className="font-[500] text-[12px] text-[#464646]">Codes was developed by three Systems and Computer Engineering students from the National University of Colombia:
-          Cristian Steven Motta, Juan Esteban Santacruz, and Sebastian Andrade.</p>
+          Cristian Motta, Juan Esteban Santacruz, and Sebastian Andrade.</p>
         </div>
 
           <div className="text-center flex-row justify-around gap-[10px]">
