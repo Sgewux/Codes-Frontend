@@ -60,7 +60,9 @@ function ProblemsetterProblemsTable(){
         {problems.map((p) => (
           <tr key={p.problem_id}>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
-              <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.problem_id}</span>
+              <Link to={`/problems/${p.problem_id}`}>
+                <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.problem_id}</span>
+              </Link>
             </td>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
               {p.problem_name}
