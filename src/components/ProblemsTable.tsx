@@ -1,3 +1,24 @@
+/*
+The `ProblemsTable` component displays a list of programming problems 
+in a structured table format with relevant details.
+
+Props:
+- `problems`: An array of `ProblemRow` objects containing:
+  - `id`: Unique identifier for the problem.
+  - `name`: The problem's title.
+  - `status`: The user's latest submission result (e.g., AC, WA, TL).
+  - `author`: The problem creator.
+  - `times_solved`: Number of times the problem has been solved.
+
+Features:
+- Uses `statusMessage` function to convert status codes into human-readable messages.
+- Highlights accepted problems (`AC`) in green.
+- Each row is clickable and opens the problem in a new tab.
+- The first column contains a clickable link to the problem's page.
+- Dynamic styling for hover effects and rounded corners.
+
+*/
+
 import { Link } from "react-router-dom";
 
 interface ProblemsTableProps {

@@ -1,6 +1,27 @@
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+/*
+The `SubmissionsTable` component displays a list of submissions made by a user.
+
+Props:
+- `submissions`: An array of `SubmissionRow` objects containing:
+  - `id`: Unique identifier for the submission.
+  - `problem_name`: The problem the submission is for.
+  - `status`: The result of the submission (e.g., AC, WA, TL).
+  - `date`: The submission timestamp.
+
+Features:
+- Uses `statusMessage` function to convert status codes into human-readable messages.
+- Highlights accepted submissions (`AC`) in green.
+- Displays a custom message if the user has no submissions.
+- Each row is clickable and opens the submission details in a new tab.
+- The first column contains a clickable link to the submission's page.
+- Dynamic styling for hover effects and rounded corners.
+- Formats the date using `toLocaleString` for readability.
+
+*/
+
 
 interface SubmissionsTableProps {
   submissions: Array<SubmissionRow>;

@@ -5,6 +5,21 @@ import { createProblem } from "../api/problems";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+/**
+ * This code defines a `CreateProblemForm` component for a problem-setting platform.
+ * It allows users (problem setters) to create new programming problems by filling in
+ * various fields, including the problem name, statement, test cases, expected output,
+ * and editorial. 
+ * 
+ * - Uses state hooks to manage form inputs and uploaded content.
+ * - Validates user input to ensure required fields are provided and constraints are met.
+ * - Upon submission, it sends the problem data to the backend using `createProblem()`.
+ * - The problem setter cannot modify test cases or expected output after submission.
+ * - Uses `DropFile` components for uploading `.md` and `.txt` files.
+ * - If the problem is successfully created, the page reloads and an alert is displayed.
+ * - Utilizes Tailwind CSS for styling.
+ */
+
 
 function CreateProblemForm() {
   const { user } = useAuth();
@@ -57,7 +72,7 @@ function CreateProblemForm() {
   return(
     <div className="bg-white w-[1000px] border-solid border-[#B8B8B8] border-[1px] rounded-[15px] p-[25px] flex flex-col items-center shadow-[1px_2px_4px_#00000040]">
       <div className="w-[800px]">
-        <h1 className="font-[500] text-[30px]">Create Problem</h1>
+        <h1 className="font-[500] text-[30px]">Add Problem</h1>
         <div className="pl-[30px] border-solid border-l-[4px] border-[#3B3B3B] h-[150px] flex flex-col justify-center my-[20px]">
           <p className="font-[400] text-[20px] w-[700px]">
           Be careful! You will not be able to edit the test cases or expected output in the future. It is also recommended to provide a clear and complete explanation of the input constraints and output format (with examples if possible) within the problem statement.

@@ -5,6 +5,12 @@ import Footer from "../components/Footer";
 import { AxiosError } from "axios";
 import ErrorMessage from "../components/ErrorMesage";
 
+/*
+This component renders the Login page, allowing users to authenticate with their handle and password.  
+It includes error handling, redirects authenticated users, and provides a sign-up link for new users.  
+*/
+
+
 function Login() {
   const [handle, setHandle] = useState<string>("");
   const [password, setPassword] = useState<string>("");

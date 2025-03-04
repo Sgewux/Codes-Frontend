@@ -11,6 +11,21 @@ import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
+/**
+ * The `Editorial` component displays the editorial content for a problem.
+ *
+ * Features:
+ * - Fetches problem details based on the `id` from the URL.
+ * - Renders markdown content, including mathematical expressions using `remarkMath` and `rehypeKatex`.
+ * - Implements a progressive content reveal system:
+ *   - Initially displays 25% of the editorial content.
+ *   - Allows users to expand in increments of 25% or show the entire editorial.
+ *   - Uses a smooth fading effect at the bottom when content is partially displayed.
+ * - Handles errors such as problem not found (renders `NotFound` component).
+ * - Uses a `useRef` to dynamically calculate content height.
+ */
+
+
 
 function Editorial(){
   const { id } = useParams();

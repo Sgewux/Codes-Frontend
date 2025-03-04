@@ -1,3 +1,20 @@
+/*
+The `SecondLevelMenu` component renders a horizontal navigation menu 
+where users can select an option from a given list.
+
+Props:
+- `options`: An array of string values representing available options.
+- `labels`: An array of strings that serve as display labels for each option.
+- `selected`: The currently selected option.
+- `select`: A function that updates the selected option when a user clicks on a menu item.
+
+Each menu item is styled dynamically based on whether it is selected or not, 
+with a highlighted bottom border and bold text for the selected option.
+
+Clicking on an item updates the selection state via the `select` function.
+*/
+
+
 interface SecondLevelMenuProps {
   options: Array<string>; // Available options
   labels: Array<string>;

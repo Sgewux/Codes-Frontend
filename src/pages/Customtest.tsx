@@ -3,7 +3,21 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { customtest } from "../api/customtest";
 
-export default function CustomTest() {
+/**
+ * The `CustomTest` component provides an interface for users to run custom C++ code
+ * with optional input and view the output.
+ *
+ * Features:
+ * - Textareas for users to input C++ code and custom input.
+ * - Displays execution output, including runtime and results.
+ * - Calls the `customtest` API to execute the provided code.
+ * - Handles API responses and displays execution logs or errors.
+ * - Uses `useState` to manage code, input, and output states.
+ * - Updates the output state dynamically to show execution status.
+ */
+
+
+function CustomTest() {
   const [code, setCode] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -65,3 +79,5 @@ export default function CustomTest() {
     </>
   );
 }
+
+export default CustomTest;

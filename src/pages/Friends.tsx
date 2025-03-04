@@ -8,6 +8,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { createFriendship, deleteFriendship } from "../api/friend";
 
+/*
+This component renders the Friends page, allowing users to search for and manage friends.  
+It includes filtering options, a search bar, and pagination.  
+Users can add or remove friends, and the list updates dynamically.  
+*/
+
+
 function Friends() {
   const { user } = useAuth();
   const [filter, setFilter] = useState<"all" | "friends">("all");

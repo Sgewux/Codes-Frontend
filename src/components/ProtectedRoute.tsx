@@ -1,6 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+/**
+ * This component recieves a list of required roles, and checks wheter the logged user
+ * has this role or not, in case it doesnt, it redirects the user to the Not Fount page
+ */
+
 interface ProtectedRouteProps {
   requiredRole?: Role;
 }

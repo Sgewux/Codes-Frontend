@@ -9,6 +9,17 @@ import NotFound from "./NotFound";
 import { postSubmission } from "../api/submissions";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Submit Component
+ * 
+ * This component allows users to submit a solution for a programming problem. 
+ * Users can either drag and drop a C++ file or paste their code into a textarea. 
+ * The submission is sent to the server, and upon success, the user is redirected 
+ * to the submission details page. If the problem does not exist, a "Not Found" 
+ * page is displayed.
+ */
+
+
 function Submit() {
   const { id } = useParams();
   const [droppedCode, setDroppedCode] = useState<string | null>(null);

@@ -5,6 +5,15 @@ import Footer from "../components/Footer";
 import ErrorMessage from "../components/ErrorMesage";
 import { AxiosError } from "axios";
 
+/*
+The Register component provides a user registration form with fields for handle, first name, last name, and password.  
+It validates that the password and confirmation match before attempting to register using the `register_context` function.  
+If the registration is successful, it redirects the user to their profile page.  
+Error messages are displayed when registration fails, and an existing session redirects to the profile page.  
+A link to the login page is provided for users who already have an account.  
+*/
+
+
 function Register() {
   const [handle, setHandle] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");

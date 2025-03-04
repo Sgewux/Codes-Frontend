@@ -10,6 +10,15 @@ import { useAuth } from "../context/AuthContext";
 import { AxiosError } from "axios";
 import NotFound from "./NotFound";
 
+/*
+The Profile component displays a user's profile page, including their handle, last submissions, and activity graph.  
+If the logged-in user is viewing their own profile, a welcome message appears.  
+It fetches the last four submissions using the `getUserSubmissions` API call and displays them in a table.  
+If the user handle does not exist, the NotFound component is shown.  
+A link to view all submissions is provided.  
+*/
+
+
 function Profile() {
 
   const [lastubmissions, setLastSubmissions] = useState<Array<SubmissionRow>|null>(null);

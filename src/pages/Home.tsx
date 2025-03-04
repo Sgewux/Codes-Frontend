@@ -1,6 +1,12 @@
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 
+/*
+This component renders the Home page, introducing users to the platform.  
+It features a welcome message, a brief description, and a call-to-action button.  
+*/
+
+
 function Home(){
   return (
     <>

@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { readProblem } from "../api/problems";
 
+/**
+ * This code defines a reusable "ProblemsetterProblemsTable component"
+ * which defines a table that contains all the necessary information for a problemsetter
+ */
+
 function ProblemsetterProblemsTable(){
 
   const { handle } = useParams();
@@ -58,7 +63,7 @@ function ProblemsetterProblemsTable(){
               <span className="transition-[0.3s] hover:text-[#235598] cursor-pointer underline">{p.problem_id}</span>
             </td>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
-              {p.problem_name} hola
+              {p.problem_name}
             </td>
             <td className="font-[400] text-[15px] w-[200px] h-[50px]">
             <Link 
@@ -83,4 +88,3 @@ function ProblemsetterProblemsTable(){
 }
 
 export default ProblemsetterProblemsTable;
-

@@ -3,6 +3,20 @@ import DropFile from "./DropFile";
 import { useParams } from "react-router-dom";
 import { updateProblem, readProblem } from "../api/problems";
 
+/**
+ * This component, `EditProblemForm`, provides an interface for users to edit
+ * an existing programming problem by updating its statement and editorial files.
+ *
+ * Features:
+ * - Fetches problem data using a unique identifier (`handle`) from the URL.
+ * - Displays a dropdown list of problems, allowing users to select one for editing.
+ * - Enables users to upload new `.md` files for the problem statement and editorial.
+ * - Validates that at least one file is updated before submission.
+ * - Sends the updated content to the backend API (`updateProblem`) and refreshes the page upon success.
+ *
+ */
+
+
 function EditProblemForm() {
   const [editorialContent, setEditorialContent] = useState<string | null>(null);
   const [statementContent, setStatementContent] = useState<string | null>(null);

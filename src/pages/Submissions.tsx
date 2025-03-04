@@ -9,6 +9,16 @@ import { getUserSubmissionCount, getUserSubmissions } from "../api/user";
 import { AxiosError } from "axios";
 import NotFound from "./NotFound";
 
+/**
+ * Submissions Component
+ * 
+ * This component displays a user's submissions with filtering options for all submissions, 
+ * accepted submissions, or attempted submissions. It fetches submission data from the API 
+ * based on the selected filter and current page. Pagination is handled with a page selector.
+ * If the user does not exist, a "Not Found" page is displayed.
+ */
+
+
 function Submissions(){
   const [filter, setFilter] = useState<"all" | "accepted" | "tried">("all"); //according to this fetch data with useEffect
   const [page, setPage] = useState<number>(1);

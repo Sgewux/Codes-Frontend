@@ -29,7 +29,7 @@ function Problemsetter(){
       </div>
 
       <div className="w-[100vw] h-[80px]">
-        <SecondLevelMenu options={["Create", "Read", "Update", "Delete"]} labels={["Create", "Read", "Update", "Delete"]} selected={option} select={setOption}/>
+        <SecondLevelMenu options={["Create", "Read", "Update", "Delete"]} labels={["Add Problem", "My Problems", "Edit Problem", "Delete Problem"]} selected={option} select={setOption}/>
       </div>
 
       <div className="w-[100vw] bg-[#D9D9D9] min-h-[calc(100vh-260px)] py-[30px] flex justify-center">

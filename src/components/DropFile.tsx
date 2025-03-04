@@ -1,6 +1,20 @@
 import { useRef, useState } from "react";
 import fileIcon from "../static/file_icon.png";
 
+/**
+ * `DropFile` is a reusable file upload component that allows users to upload and 
+ * preview files of a specific extension via drag-and-drop or file selection.
+ * 
+ * - Accepts `contentSetter` (a function to store file content) and `fileExtension`
+ *   (the required file type) as props.
+ * - Uses a `useRef` hook to programmatically open the file explorer when clicked.
+ * - Handles both drag-and-drop and manual file selection.
+ * - Reads the uploaded file as text and passes its content to `contentSetter`.
+ * - Displays the uploaded file name, or a prompt if no file is selected.
+ * - Includes a dashed border container and a file icon for better UX.
+ */
+
+
 interface DropFileProps {
   contentSetter: (c: string) => void;
   fileExtension: string;

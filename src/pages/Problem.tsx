@@ -11,6 +11,12 @@ import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
+/*
+This component renders a problem page.  
+It fetches the problem data by its ID and displays its details, including author, name, time limit, and statement.  
+If the problem is not found, it shows a 404 Not Found page.  
+*/
+
 
 function Problem(){
   const { id } = useParams();

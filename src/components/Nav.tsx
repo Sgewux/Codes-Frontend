@@ -1,6 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+/**
+ * This code defines a navigation bar component for a coding platform using React and React Router.
+ * The `Nav` component displays different navigation links based on the authenticated user's role.
+ * 
+ * - If the user is logged in, it shows their profile link, "Problems," "Custom Test," and additional
+ *   tabs like "Friends" (for contestants) and "Problemsetter" (for problem setters).
+ * - If the user is not logged in, it displays "Login" and "Register" options.
+ * - The component also includes a logout function that logs out the user and updates the authentication state.
+ * - The `activeTab` prop determines which tab is currently selected, highlighting it with a border.
+ * - Tailwind CSS is used for styling, and React Router's `Link` component is used for navigation.
+ */
+
+
 interface NavProps {
   activeTab?: "problems" | "friends" | "problemsetter" | "customtest";
 }

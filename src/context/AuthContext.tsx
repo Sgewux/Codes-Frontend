@@ -1,6 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, register, verify } from "../api/auth";
 
+/**
+ * This code defines an authentication context for a React application using the Context API and hooks. 
+ * It provides a global authentication state that includes the current user, authentication status, 
+ * and loading state. The `AuthProvider` component initializes authentication by verifying the user's 
+ * session on mount and provides functions for logging in, registering, and logging out. The `useAuth` 
+ * hook allows components to access the authentication context, ensuring they are wrapped inside the 
+ * `AuthProvider`. This structure centralizes authentication logic, making it reusable across the application.
+ */
+
 const AuthContext = createContext<AuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {

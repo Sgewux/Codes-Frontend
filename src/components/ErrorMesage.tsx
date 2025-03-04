@@ -1,5 +1,25 @@
 import { useEffect, useState } from "react";
 
+/*
+The `ErrorMessage` component displays an error message with a fade-in and fade-out effect.
+
+Props:
+- `active`: A boolean indicating whether the error message should be visible.
+- `message`: The text content of the error message.
+
+Features:
+- Uses the `useState` hook to manage visibility (`visible` state).
+- Implements a `useEffect` hook to handle fading:
+  - When `active` is `true`, the message becomes visible immediately.
+  - When `active` becomes `false`, a 400ms delay is applied before hiding it.
+- Applies Tailwind CSS classes for styling:
+  - Red-themed error message with a border and rounded corners.
+  - Smooth transition between opacity states.
+- The message disappears smoothly when `active` is `false`.
+
+*/
+
+
 interface ErrorMessageProps {
   active: boolean;
   message: string;

@@ -1,6 +1,12 @@
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 
+/*
+This component renders a simple 404 Not Found page.  
+It displays a message informing the user that the requested page does not exist.  
+*/
+
+
 function NotFound(){
   return(
     <>

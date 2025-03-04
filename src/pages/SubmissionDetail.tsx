@@ -8,6 +8,14 @@ import { getSubmission } from "../api/submissions";
 import { AxiosError } from "axios";
 import NotFound from "./NotFound";
 
+/**
+ * The submission detail component fetches and displays details of a specific submission,
+ * including metadata such as the contestant, problem name, verdict, execution time, and date.
+ * It also renders the submitted source code with syntax highlighting and provides a copy button.
+ * If the submission is not found, it displays a "Not Found" page.
+ */
+
+
 function SubmissionDetail() {
   const { id } = useParams();
   const [ submission, setSubmission ] = useState<SubmissionDetail|null>(null);

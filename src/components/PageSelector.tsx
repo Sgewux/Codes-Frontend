@@ -1,3 +1,14 @@
+/**
+ * `PageSelector` is a pagination component that allows users to navigate between pages.
+ * 
+ * - Accepts `numOfPages` (total pages), `currentPage` (active page), and `setPage` (state setter) as props.
+ * - Provides next and previous buttons to navigate through pages, with proper enabling/disabling logic.
+ * - Allows direct page input; users can type a page number and press "Enter" to navigate.
+ * - Prevents invalid page navigation (ensures input is within valid page range).
+ * - Uses an input field to display the current page and allows user-defined navigation.
+ * - Hides the component if `numOfPages` is 0.
+ */
+
 interface pageSelectorProps {
   numOfPages: number;
   currentPage: number;

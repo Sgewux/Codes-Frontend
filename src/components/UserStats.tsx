@@ -2,24 +2,31 @@ import { useEffect, useState } from "react";
 import check from "../static/check.png";
 import calendar from "../static/calendar.png";
 import lightbulb from "../static/lightbulb.png";
-
 import { useParams } from "react-router-dom";
 import { get_AC_statistics } from "../api/user";
+
+/**
+ * The `UserStats` component displays a user's problem-solving statistics
+ * in a visually appealing format using three statistic cards.
+ *
+ * Features:
+ * - Fetches and displays three key statistics:
+ *   1. Total problems solved.
+ *   2. Problems solved in the last month.
+ *   3. Total submissions made.
+ * - Retrieves the user's handle from the URL using `useParams`.
+ * - Calls the `get_AC_statistics` API to fetch the user's statistics.
+ * - Uses `useState` to manage the retrieved statistics.
+ * - Uses `useEffect` to fetch data when the component mounts or when the handle changes.
+ * - Displays statistics using three styled cards, each containing an icon and text.
+ */
+
 
 function UserStats() {
   const { handle } = useParams();
   const [solvedProblems, setSolvedProblems] = useState<number>(0);
   const [solvedLastMonth, setSolvedLastMonth] = useState<number>(0);
   const [submissions, setSubmissions] = useState<number>(0);
-
-  /**
-   * Fetches user AC statistics from the API and updates the corresponding state.
-   *
-   * - Validates the `handle` before making the request.
-   * - Calls `get_AC_statistics` to retrieve data.
-   * - Updates state variables: solved problems, recent ACs, and total submissions.
-   * - Handles potential errors during the API call.
-   */
 
   useEffect(() => {
     const get = async () => {

@@ -3,6 +3,11 @@ import email from "../static/email.png";
 import phone from "../static/phone.png";
 import gh from "../static/gh.png";
 
+/**
+ * Footer section of the page
+ * shows some relevant information about the project and the developers
+ */
+
 function Footer() {
   return (
     <div className="mt-[100px] h-[200px] w-[100vw] bg-white bottom-0 absolute px-[50px] pt-[20px]">

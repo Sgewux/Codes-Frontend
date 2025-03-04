@@ -2,6 +2,21 @@ import { useEffect, useState } from "react";
 import { deleteProblem, readProblem } from "../api/problems";
 import { useParams } from "react-router-dom";
 
+/**
+ * The `DeleteProblemForm` component allows users to delete a programming problem 
+ * from a list of available problems.
+ *
+ * Features:
+ * - Fetches the list of problems associated with a given identifier (`handle`) from the URL.
+ * - Displays a dropdown menu for users to select a problem to delete.
+ * - Validates that a problem is selected before allowing deletion.
+ * - Sends a request to delete the selected problem using `deleteProblem`.
+ * - Reloads the page upon successful deletion to reflect the changes.
+ * - Uses `useEffect` to load problems when the component mounts or when the handle changes.
+ * - Uses `useState` to manage the list of problems and the selected problem ID.
+ */
+
+
 function DeleteProblemForm() {
 
   const [selectedValue, setSelectedValue] = useState("");

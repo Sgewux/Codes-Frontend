@@ -7,6 +7,14 @@ import Footer from "../components/Footer";
 import SecondLevelMenu from "../components/SecondLevelMenu";
 import { useAuth } from "../context/AuthContext";
 
+/*
+This component renders the problemset page, displaying a list of coding problems.  
+It supports filtering problems by "all", "accepted", or "tried", and allows searching by name.  
+The problems are fetched using useEffect whenever the filter, page, or search query changes.  
+A pagination system is included to navigate through multiple pages of problems.  
+*/
+
+
 function Problems(){
   const { user } = useAuth();
   const [filter, setFilter] = useState<"all" | "accepted" | "tried" >("all"); //according to this fetch data with useEffect
